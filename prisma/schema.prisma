@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Profile {
+    id String @id @default(uuid())
+
+    firstName    String?       @map("first_name")
+    lastName     String?       @map("last_name")
+    organization Organization?
+
+    organizationUsers OrganizationUser?
+
+    @@map("profiles")
+}
+
+model Organization {
+    id String @id @default(uuid())
+
+    name    String
+    website String?
+
+    user   Profile @relation(fields: [userId], references: [id])
+    userId String  @unique @map("user_id")
+
+    organizationUsers OrganizationUser[]
+
+    @@map("organizations")
+}
+
+enum OrganizationRole {
+    RECRUITER
+    ADMIN
+}
+
+model OrganizationUser {
+    organization   Organization @relation(fields: [organizationId], references: [id])
+    organizationId String       @map("organization_id")
+
+    user   Profile @relation(fields: [userId], references: [id])
+    userId String  @unique @map("user_id")
+
+    role OrganizationRole @default(RECRUITER)
+
+    @@id([userId, organizationId])
+    @@map("organizations_users")
+}

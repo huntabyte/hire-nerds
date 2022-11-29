@@ -1,0 +1,15 @@
+{
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "tab",
+    "indentSize": 4,
+    "lineWidth": 80,
+    "ignore": []
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  }
+}
