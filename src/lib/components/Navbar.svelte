@@ -8,6 +8,10 @@
 		{
 			name: 'Profile',
 			href: '/my/profile'
+		},
+		{
+			name: 'Employers',
+			href: '/employers'
 		}
 	];
 </script>

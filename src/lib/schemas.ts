@@ -50,3 +50,9 @@ export const updateProfileSchema = z.object({
 		.max(64, { message: 'Last name must be less than 64 characters' })
 		.optional(),
 });
+
+
+export const createOrganizationSchema = z.object({
+    name: z.string({ required_error: 'Name is required'}).min(1, { message: 'Name is required'}).max(64, { message: 'Company name must be less than 64 characters'}),
+    website: z.string({ required_error: 'Website is required'}).url({ message: 'Website must be a valid URL'})
+})

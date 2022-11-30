@@ -19,6 +19,6 @@
 </script>
 
 <Navbar />
-<div class="p-4">
+<div class="p-4 w-full">
 	<slot />
 </div>
