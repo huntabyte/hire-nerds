@@ -52,12 +52,39 @@ model OrganizationUser {
     @@map("organizations_users")
 }
 
+enum JobType {
+    FULL_TIME
+    PART_TIME
+    CONTRACT
+}
+
+enum JobLocType {
+    REMOTE
+    HYBRID
+    OFFICE
+}
+
+enum CompensationType {
+    SALARY
+    HOURLY
+}
+
 model Job {
-    id String @id @default(uuid())
+    id            String           @id @default(uuid())
+    title         String
+    type          JobType[]
+    location      String
+    compType      CompensationType @map("comp_type")
+    payScaleBegin Int              @map("pay_scale_begin")
+    payScaleEnd   Int              @map("pay_scale_end")
+    description   String
+    jobLocType    JobLocType       @map("job_location_type")
 
     organization   Organization @relation(fields: [organizationId], references: [id])
     organizationId String       @map("organization_id")
 
     user   Profile @relation(fields: [userId], references: [id])
     userId String  @map("user_id")
+
+    @@map("jobs")
 }

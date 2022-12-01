@@ -8,8 +8,6 @@ export const validateData = async <T extends z.ZodTypeAny>(
 	formData: z.infer<T>;
 	errors: z.inferFlattenedErrors<typeof schema> | null;
 }> => {
-	const body = Object.fromEntries(formData);
-
 	if (zfd) {
 		try {
 			const data = schema.parse(formData);
@@ -26,6 +24,7 @@ export const validateData = async <T extends z.ZodTypeAny>(
 			};
 		}
 	} else {
+		const body = Object.fromEntries(formData);
 		try {
 			const data = schema.parse(body);
 			return {
