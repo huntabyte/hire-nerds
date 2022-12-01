@@ -19,8 +19,8 @@
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label font-medium text-start self-start">Pay Scale</label>
 		<div class="flex justify-between w-full space-x-4">
-			<Input id="payScaleBegin" label="Starting Pay Scale" />
-			<Input id="payScaleEnd" label="Ending Pay Scale" />
+			<Input id="payScaleBegin" label="Starting Pay Scale" type="number" />
+			<Input id="payScaleEnd" label="Ending Pay Scale" type="number" />
 		</div>
 		<div class="flex w-full max-w-lg flex-wrap md:flex-nowrap">
 			<fieldset class="max-w-lg flex-1">
@@ -39,11 +39,14 @@
 			<fieldset class="max-w-lg flex-2">
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label class="label font-medium pb-1">Location Type</label>
-				<Radio name="jobLocationType" label="Remote" value="REMOTE" />
-				<Radio name="jobLocationType" label="Hybrid" value="HYBRID" />
-				<Radio name="jobLocationType" label="Office" value="OFFICE" />
+				<Radio name="jobLocType" label="Remote" value="REMOTE" />
+				<Radio name="jobLocType" label="Hybrid" value="HYBRID" />
+				<Radio name="jobLocType" label="Office" value="OFFICE" />
 			</fieldset>
 		</div>
 	</div>
 	<Textarea id="description" label="Job Description" />
+	<div class="w-full">
+		<button type="submit" class="btn btn-primary w-full"> Post job </button>
+	</div>
 </form>

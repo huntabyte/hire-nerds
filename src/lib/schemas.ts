@@ -67,13 +67,15 @@ export const postJobSchema = zfd.formData({
 		.string({ required_error: 'Title is required' })
 		.min(1, { message: 'Title is required' })
 		.max(64, { message: 'Job Title must be less than 64 characters' }),
-	type: zfd.repeatableOfType(z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT'])),
+	type: z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT']),
 	location: z.string({ required_error: 'Location is required' }),
 	compType: z.enum(['SALARY', 'HOURLY']),
-	payScaleBegin: z.number({
-		required_error: 'Payscale starting pay is required',
-	}),
-	payScaleEnd: z.number({ required_error: 'Payscale ending pay is required' }),
+	payScaleBegin: zfd.numeric(
+		z.number({ required_error: 'Starting pay scale is required' }),
+	),
+	payScaleEnd: zfd.numeric(
+		z.number({ required_error: 'Ending pay scale is required' }),
+	),
 	description: z.string({ required_error: 'A job description is required.' }),
-	jobLocationType: z.enum(['REMOTE', 'HYBRID', 'OFFICE']),
+	jobLocType: z.enum(['REMOTE', 'HYBRID', 'OFFICE']),
 });
