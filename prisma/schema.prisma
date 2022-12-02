@@ -19,7 +19,62 @@ model Profile {
     organization OrganizationUser?
     Job          Job[]
 
+    resume Resume?
+
     @@map("profiles")
+}
+
+model Resume {
+    id         String             @id @default(uuid())
+    user       Profile            @relation(fields: [userId], references: [id])
+    userId     String             @unique @map("user_id")
+    firstName  String             @map("first_name")
+    lastName   String             @map("last_name")
+    location   String
+    education  ResumeEducation[]
+    experience ResumeExperience[]
+    skills     ResumeSkills[]
+
+    @@map("resumes")
+}
+
+model ResumeEducation {
+    id                String    @id @default(uuid())
+    resume            Resume?   @relation(fields: [resumeId], references: [id])
+    resumeId          String?   @map("resume_id")
+    educationLevel    String?   @map("education_level")
+    field             String?   @map("field")
+    school            String?   @map("school")
+    location          String?   @map("location")
+    currentlyEnrolled Boolean?  @default(false) @map("currently_enrolled")
+    enrolledFrom      DateTime? @map("enrolled_from")
+    enrolledTo        DateTime? @map("enrolled_to")
+
+    @@map("resume_educations")
+}
+
+model ResumeExperience {
+    id                String    @id @default(uuid())
+    resume            Resume?   @relation(fields: [resumeId], references: [id])
+    resumeId          String?   @map("resume_id")
+    jobTitle          String?   @map("job_title")
+    company           String?   @map("company")
+    location          String?   @map("location")
+    currentlyEmployed Boolean?  @default(false) @map("currently_employed")
+    employedFrom      DateTime? @map("employed_from")
+    employedTo        DateTime? @map("employed_to")
+    description       String?
+
+    @@map("resume_experience")
+}
+
+model ResumeSkills {
+    id String @id @default(uuid())
+
+    resume   Resume? @relation(fields: [resumeId], references: [id])
+    resumeId String? @map("resume_id")
+
+    name String
 }
 
 model Organization {

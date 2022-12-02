@@ -79,3 +79,76 @@ export const postJobSchema = zfd.formData({
 	description: z.string({ required_error: 'A job description is required.' }),
 	jobLocType: z.enum(['REMOTE', 'HYBRID', 'OFFICE']),
 });
+
+export const createResumeSchema = z.object({
+	firstName: z
+		.string()
+		.max(64, { message: 'First name must be less than 64 characters' }),
+	lastName: z
+		.string()
+		.max(64, { message: 'Last name must be less than 64 characters' }),
+	location: z.string(),
+});
+
+export const createEducationSchema = zfd.formData({
+	educationLevel: z
+		.string({ required_error: 'Education level is required' })
+		.min(1, { message: 'Education level is required' })
+		.max(64, { message: 'Education level must be less than 64 characters' }),
+	field: z.string().optional(),
+	school: z.string().optional(),
+	location: z.string().optional(),
+	currentlyEnrolled: zfd
+		.checkbox()
+		.transform((val) => Boolean(val))
+		.optional(),
+	enrolledFrom: z
+		.string()
+		.transform((val) => {
+			if (val === '') {
+				return null;
+			}
+			return new Date(val);
+		})
+		.optional(),
+	enrolledTo: z
+		.string()
+		.transform((val) => {
+			if (val === '') {
+				return null;
+			}
+			return new Date(val);
+		})
+		.optional(),
+});
+
+export const createExperienceSchema = zfd.formData({
+	jobTitle: z
+		.string({ required_error: 'Education level is required' })
+		.min(1, { message: 'Education level is required' })
+		.max(64, { message: 'Education level must be less than 64 characters' }),
+	company: z.string().optional(),
+	location: z.string().optional(),
+	currentlyEmployed: zfd
+		.checkbox()
+		.transform((val) => Boolean(val))
+		.optional(),
+	employedFrom: z
+		.string()
+		.transform((val) => {
+			if (val === '') {
+				return null;
+			}
+			return new Date(val);
+		})
+		.optional(),
+	employedTo: z
+		.string()
+		.transform((val) => {
+			if (val === '') {
+				return null;
+			}
+			return new Date(val);
+		})
+		.optional(),
+});

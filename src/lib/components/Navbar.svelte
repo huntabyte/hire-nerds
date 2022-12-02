@@ -10,6 +10,10 @@
 			href: '/my/profile'
 		},
 		{
+			name: 'Jobs',
+			href: '/jobs'
+		},
+		{
 			name: 'Employers',
 			href: '/employers'
 		}

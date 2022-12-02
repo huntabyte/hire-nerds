@@ -5,7 +5,8 @@
 	export let data: PageData;
 </script>
 
-<form action="?/updateProfile" method="POST" class="flex flex-col space-y-2 w-full max-w-lg">
+<a href="/my/resume/create" class="btn btn-primary"> Create Your Nerd Resume </a>
+<form action="?/updateProfile" method="POST" class="flex flex-col space-y-2 w-full max-w-lg ">
 	<Input id="firstName" label="First Name" value={data.profile?.firstName} />
 	<Input id="lastName" label="Last Name" value={data.profile?.lastName} />
 	<div class="w-full max-w-lg pt-2">
