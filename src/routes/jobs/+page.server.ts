@@ -1,6 +1,4 @@
 import { prisma } from '$lib/server/prisma';
-import { PrismaClient } from '@prisma/client';
-import { CONNECTION_POOL_URL } from '$env/static/private';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {

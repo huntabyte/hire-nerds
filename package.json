@@ -16,6 +16,7 @@
     "devDependencies": {
         "@faker-js/faker": "^7.6.0",
         "@playwright/test": "1.25.0",
+        "@prisma/client": "^4.7.0",
         "@sveltejs/adapter-auto": "next",
         "@sveltejs/kit": "next",
         "@typescript-eslint/eslint-plugin": "^5.27.0",
@@ -44,7 +45,6 @@
     },
     "type": "module",
     "dependencies": {
-        "@prisma/client": "^4.6.1",
         "@supabase/auth-helpers-sveltekit": "^0.8.6",
         "@supabase/supabase-js": "^2.1.1",
         "dotenv": "^16.0.3"
