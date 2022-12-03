@@ -1,39 +1,24 @@
 import { PrismaClient } from '@prisma/client';
 import { CONNECTION_POOL_URL } from '$env/static/private';
 
-let prisma: PrismaClient;
-// export const prisma = new PrismaClient({
-// 	datasources: {
-// 		db: {
-// 			url: CONNECTION_POOL_URL,
-// 		},
-// 	},
-// });
-
-declare global {
-	var __db__: PrismaClient;
+interface CustomNodeJSGlobal extends NodeJS.Global {
+	prisma: PrismaClient;
 }
 
-if (process.env.NODE_ENV === 'production') {
-	prisma = new PrismaClient({
+declare const global: CustomNodeJSGlobal;
+
+const prisma =
+	global.prisma ||
+	new PrismaClient({
 		datasources: {
 			db: {
 				url: CONNECTION_POOL_URL,
 			},
 		},
 	});
-} else {
-	if (!global.__db__) {
-		global.__db__ = new PrismaClient({
-			datasources: {
-				db: {
-					url: CONNECTION_POOL_URL,
-				},
-			},
-		});
-	}
-	prisma = global.__db__;
-	prisma.$connect();
+
+if (process.env.NODE_ENV === 'development') {
+	global.prisma = prisma;
 }
 
-export { prisma };
+export default prisma;

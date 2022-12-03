@@ -17,4 +17,9 @@ declare global {
 		}
 		// interface Platform {}
 	}
+	declare namespace NodeJS {
+		interface Global {
+			spotConfig: any;
+		}
+	}
 }
