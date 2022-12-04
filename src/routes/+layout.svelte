@@ -20,7 +20,4 @@
 </script>
 
 <Toaster />
-<Navbar />
-<div class="p-4 w-full">
-	<slot />
-</div>
+<slot />

@@ -1,23 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	const navItems = [
-		{
-			name: 'Home',
-			href: '/'
-		},
-		{
-			name: 'Profile',
-			href: '/my/profile'
-		},
-		{
-			name: 'Jobs',
-			href: '/jobs'
-		},
-		{
-			name: 'Employers',
-			href: '/employers'
-		}
-	];
+	import type { Link } from '$lib/types';
+
+	export let navItems: Link[];
 </script>
 
 <div class="flex w-full justify-between items-center p-4">
@@ -25,7 +10,7 @@
 		<ul class="flex items-center space-x-2 text-white">
 			{#each navItems as navItem}
 				<li>
-					<a href={navItem.href} class="btn btn-ghost">{navItem.name}</a>
+					<a href={navItem.href} class="btn btn-ghost">{navItem.title}</a>
 				</li>
 			{/each}
 		</ul>

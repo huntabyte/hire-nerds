@@ -11,46 +11,17 @@ const prisma = new PrismaClient({
 	},
 });
 
-function sleep(ms) {
-	return new Promise((resolve) => {
-		setTimeout(resolve, ms);
-	});
-}
-
-const createUser = async () => {
-	const supabase = createClient(
-		process.env.PUBLIC_SUPABASE_URL,
-		process.env.PUBLIC_SUPABASE_ANON_KEY,
-	);
-
+const createUser = async (userId) => {
 	const firstName = faker.name.firstName();
 	const lastName = faker.name.lastName();
 
-	const user = {
-		firstName,
-		lastName,
-		email: faker.internet.exampleEmail(firstName, lastName),
-		password: 'password123!',
-	};
-
-	const { data: session, error } = await supabase.auth.signUp({
-		email: user.email,
-		password: user.password,
-	});
-	await sleep(5000);
-
-	console.log(error);
-	console.log(session);
-
 	const profile = await prisma.profile.create({
 		data: {
-			id: session.user.id,
-			firstName: user.firstName,
-			lastName: user.lastName,
+			id: userId,
+			firstName,
+			lastName,
 		},
 	});
-	await supabase.auth.signOut();
-	await sleep(5000);
 
 	return profile;
 };
@@ -104,7 +75,6 @@ const createManyJobs = async (profile, organization, numJobs) => {
 			userId: profile.id,
 		});
 	}
-
 	const jobs = await prisma.job.createMany({
 		data: data,
 	});
@@ -169,9 +139,35 @@ const createJobApplication = async (profile, job) => {
 	return application;
 };
 
+export const orgUserIds = [
+	'84d396af-e883-450d-a164-7c1399d6ae49',
+	'447a2c0c-2231-4f83-aa08-2c427847d04b',
+	'06a92e5a-3d85-4098-82fc-97aa931568ce',
+	'905ace4b-0cc3-4309-984a-474530707016',
+	'9f02566f-3020-492f-9be5-b4a487b61ad4',
+];
+
+export const candidateUserIds = [
+	'ecae3fd5-550a-47aa-81f8-8edaa779f295',
+	'7144973a-2bff-40fe-9f68-fba9cba8ba56',
+	'5cd0e9f0-4210-4eba-9cf3-876684304939',
+	'3156392a-8220-4e8b-a5cb-5d1332e85805',
+	'bb00045f-0358-4ff2-95ad-b0ec5e283365',
+	'683cd2ec-d89f-4b8e-93b4-c21d775b332b',
+	'11475c79-5726-4fc9-a014-bdbae553468d',
+	'0720adf1-2a3f-4f87-9244-53b3c76a3d95',
+	'84261d9e-4493-4d22-a4a9-00e30be09bba',
+	'c6a190d8-9c65-4940-b77e-3971bd95a4dc',
+	'e318b870-3c97-43ba-8ea0-f5329af37269',
+	'660d2b95-3790-4e07-b5cc-3dd8b5dcdc66',
+	'471742a6-5bf1-43fc-b9e3-2ad73e521919',
+	'163f884a-a113-4ec0-96e6-903cdcebdc03',
+	'66b571bc-fdb3-45b7-a154-9b37a614ba77',
+];
+
 async function main() {
-	for (let i = 0; i < 5; i++) {
-		const profile = await createUser();
+	for (let val of orgUserIds) {
+		const profile = await createUser(val);
 		const organization = await createOrganization(profile);
 
 		const jobs = await createManyJobs(profile, organization, 5);
@@ -179,8 +175,8 @@ async function main() {
 
 	const jobs = await prisma.job.findMany();
 
-	for (let i = 0; i < 15; i++) {
-		const profile = await createUser();
+	for (let val of candidateUserIds) {
+		const profile = await createUser(val);
 		const resume = await createResume(profile);
 		const jobsToApply = [];
 		for (let i = 0; i < 5; i++) {
