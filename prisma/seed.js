@@ -36,6 +36,12 @@ async function main() {
 			password: 'password123!!!',
 		});
 		if (session.user) {
+			const profile = await prisma.profile.create({
+				data: {
+					id: session.user.id,
+				},
+			});
+
 			const organization = await prisma.organization.create({
 				data: {
 					name: faker.company.name(),
