@@ -25,7 +25,7 @@
 	<div class="w-full max-w-2xl">
 		<div class="flex w-full justify-between">
 			<h1 class="text-2xl font-bold text-white">{job.title}</h1>
-			<p>Applications Submitted: {applicationCount}</p>
+
 			{#if session}
 				{#if !hasApplied}
 					<form action="?/apply" method="POST" use:enhance={submitApplication}>
@@ -42,5 +42,6 @@
 		<p>{job.compType}</p>
 		<p>${job.payScaleBegin} - ${job.payScaleEnd}</p>
 		<p>{job.description}</p>
+		<p>Applications Submitted: {applicationCount}</p>
 	</div>
 {/if}

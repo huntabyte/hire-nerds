@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { Job } from '$lib/components';
 
 	export let data: PageData;
 
@@ -7,10 +8,8 @@
 </script>
 
 <h1>Jobs</h1>
-<ul>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-2 md:gap-4 md:gap-y-4 gap-y-2">
 	{#each jobs as job}
-		<li>
-			<a href="/jobs/{job.id}" class="text-white font-medium">{job.title}</a>
-		</li>
+		<Job {job} />
 	{/each}
-</ul>
+</div>

@@ -151,6 +151,7 @@ export const createExperienceSchema = zfd.formData({
 			return new Date(val);
 		})
 		.optional(),
+	description: z.string().optional(),
 });
 
 export const createSkillSchema = z.object({

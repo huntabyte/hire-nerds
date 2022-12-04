@@ -77,6 +77,8 @@ model ResumeSkills {
     resumeId String? @map("resume_id")
 
     name String
+
+    @@map("resume_skills")
 }
 
 model Organization {

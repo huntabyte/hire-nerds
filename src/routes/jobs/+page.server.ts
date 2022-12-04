@@ -3,7 +3,11 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const getJobs = async () => {
-		const jobs = await prisma.job.findMany();
+		const jobs = await prisma.job.findMany({
+			include: {
+				organization: true,
+			},
+		});
 		return jobs;
 	};
 
