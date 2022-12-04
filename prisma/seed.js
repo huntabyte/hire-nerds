@@ -176,9 +176,11 @@ async function main() {
 	const jobs = await prisma.job.findMany();
 
 	for (let val of candidateUserIds) {
+		faker.seed(Math.random() * 100);
 		const profile = await createUser(val);
 		const resume = await createResume(profile);
-		const jobsToApply = [];
+		let jobsToApply = [];
+
 		for (let i = 0; i < 5; i++) {
 			let num = faker.datatype.number({ min: 0, max: 24 });
 
@@ -188,9 +190,11 @@ async function main() {
 			jobsToApply.push(num);
 		}
 
-		for (const jobIdx in jobsToApply) {
+		for (const jobIdx of jobsToApply) {
+			console.log(jobIdx);
 			await createJobApplication(profile, jobs[jobIdx]);
 		}
+		jobsToApply = [];
 	}
 }
 

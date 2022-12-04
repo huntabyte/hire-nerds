@@ -13,6 +13,9 @@ export const load: PageServerLoad = async ({ locals, parent }) => {
 			where: {
 				organizationId: organizationId,
 			},
+			include: {
+				applications: true,
+			},
 		});
 		return jobs;
 	};
