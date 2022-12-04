@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from '$app/forms';
 	import toast from 'svelte-french-toast';
-	import type { ActionData, PageData } from './$types';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
-	export let form: ActionData;
 
-	$: ({ job, session, applications, hasApplied } = data);
+	$: ({ job, session, applicationCount, hasApplied } = data);
 
 	const submitApplication: SubmitFunction = () => {
 		return async ({ result, update }) => {
@@ -26,6 +25,7 @@
 	<div class="w-full max-w-2xl">
 		<div class="flex w-full justify-between">
 			<h1 class="text-2xl font-bold text-white">{job.title}</h1>
+			<p>Applications Submitted: {applicationCount}</p>
 			{#if session}
 				{#if !hasApplied}
 					<form action="?/apply" method="POST" use:enhance={submitApplication}>

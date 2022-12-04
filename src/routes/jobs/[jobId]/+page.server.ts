@@ -12,13 +12,13 @@ export const load: PageServerLoad = ({ params, locals }) => {
 		return job;
 	};
 
-	const getJobApplications = async (jobId: string) => {
-		const applications = await prisma.jobApplication.findMany({
+	const getApplicationCount = async (jobId: string) => {
+		const count = await prisma.jobApplication.count({
 			where: {
-				jobId: params.jobId,
+				jobId: jobId,
 			},
 		});
-		return applications;
+		return count;
 	};
 
 	const getApplicationStatus = async (userId: string, jobId: string) => {
@@ -39,14 +39,14 @@ export const load: PageServerLoad = ({ params, locals }) => {
 	if (!locals.session?.user) {
 		return {
 			job: getJob(params.jobId),
-			applications: getJobApplications(params.jobId),
+			applicationCount: getApplicationCount(params.jobId),
 			hasApplied: false,
 		};
 	}
 
 	return {
 		job: getJob(params.jobId),
-		applications: getJobApplications(params.jobId),
+		applicationCount: getApplicationCount(params.jobId),
 		hasApplied: getApplicationStatus(locals.session.user.id, params.jobId),
 	};
 };
