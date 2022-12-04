@@ -1,18 +1,18 @@
-import { createExperienceSchema } from '$lib/schemas';
+import { createSkillSchema } from '$lib/schemas';
 import { prisma } from '$lib/server/prisma';
 import { validateData } from '$lib/utils';
 import { error, invalid, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
-	createExperience: async ({ request, locals }) => {
+	createSkill: async ({ request, locals }) => {
 		if (!locals.session?.user) {
 			throw error(401, 'Unauthorized');
 		}
 
 		const { formData, errors } = await validateData(
 			await request.formData(),
-			createExperienceSchema,
+			createSkillSchema,
 		);
 
 		if (errors) {
@@ -29,12 +29,11 @@ export const actions: Actions = {
 		});
 
 		if (!resume) {
-			console.log('No resume found.');
 			throw redirect(303, '/my/resume/create');
 		}
 
 		try {
-			await prisma.resumeExperience.create({
+			await prisma.resumeSkills.create({
 				data: {
 					...formData,
 					resumeId: resume.id,
@@ -45,7 +44,6 @@ export const actions: Actions = {
 
 			throw error(500, 'Something went wrong adding experience.');
 		}
-
-		throw redirect(303, '/my/resume/skills');
+		throw redirect(303, '/my/resume');
 	},
 };

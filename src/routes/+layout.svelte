@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Toaster } from 'svelte-french-toast';
 	import { invalidateAll } from '$app/navigation';
 	import { Navbar } from '$lib/components';
 	import { supabase } from '$lib/supabase';
@@ -18,6 +19,7 @@
 	});
 </script>
 
+<Toaster />
 <Navbar />
 <div class="p-4 w-full">
 	<slot />

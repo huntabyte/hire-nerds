@@ -152,3 +152,12 @@ export const createExperienceSchema = zfd.formData({
 		})
 		.optional(),
 });
+
+export const createSkillSchema = z.object({
+	name: z
+		.string({ required_error: 'Name is required' })
+		.min(1, { message: 'Name is required' })
+		.max(64, {
+			message: 'Skill name must be less than 65 characters',
+		}),
+});

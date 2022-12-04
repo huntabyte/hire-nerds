@@ -11,6 +11,7 @@ export const validateData = async <T extends z.ZodTypeAny>(
 	if (zfd) {
 		try {
 			const data = schema.parse(formData);
+
 			return {
 				formData: data,
 				errors: null,

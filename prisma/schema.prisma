@@ -19,7 +19,8 @@ model Profile {
     organization OrganizationUser?
     Job          Job[]
 
-    resume Resume?
+    resume         Resume?
+    JobApplication JobApplication[]
 
     @@map("profiles")
 }
@@ -34,21 +35,22 @@ model Resume {
     education  ResumeEducation[]
     experience ResumeExperience[]
     skills     ResumeSkills[]
+    appliedTo  Job[]
 
     @@map("resumes")
 }
 
 model ResumeEducation {
-    id                String    @id @default(uuid())
-    resume            Resume?   @relation(fields: [resumeId], references: [id])
-    resumeId          String?   @map("resume_id")
-    educationLevel    String?   @map("education_level")
-    field             String?   @map("field")
-    school            String?   @map("school")
-    location          String?   @map("location")
-    currentlyEnrolled Boolean?  @default(false) @map("currently_enrolled")
-    enrolledFrom      DateTime? @map("enrolled_from")
-    enrolledTo        DateTime? @map("enrolled_to")
+    id                String   @id @default(uuid())
+    resume            Resume   @relation(fields: [resumeId], references: [id])
+    resumeId          String   @map("resume_id")
+    educationLevel    String   @map("education_level")
+    field             String   @map("field")
+    school            String   @map("school")
+    location          String   @map("location")
+    currentlyEnrolled Boolean  @default(false) @map("currently_enrolled")
+    enrolledFrom      DateTime @map("enrolled_from")
+    enrolledTo        DateTime @map("enrolled_to")
 
     @@map("resume_educations")
 }
@@ -138,8 +140,31 @@ model Job {
     organization   Organization @relation(fields: [organizationId], references: [id])
     organizationId String       @map("organization_id")
 
+    user           Profile          @relation(fields: [userId], references: [id])
+    userId         String           @map("user_id")
+    applications   Resume[]
+    JobApplication JobApplication[]
+
+    @@map("jobs")
+}
+
+enum JobApplicationStatus {
+    APPLIED
+    WITHDRAWN
+    INTERVIEWING
+    HIRED
+    CLOSED
+}
+
+model JobApplication {
+    job   Job    @relation(fields: [jobId], references: [id])
+    jobId String @map("job_id")
+
     user   Profile @relation(fields: [userId], references: [id])
     userId String  @map("user_id")
 
-    @@map("jobs")
+    status JobApplicationStatus @default(APPLIED)
+
+    @@id([userId, jobId])
+    @@map("job_applications")
 }

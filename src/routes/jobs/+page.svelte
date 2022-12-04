@@ -10,7 +10,7 @@
 <ul>
 	{#each jobs as job}
 		<li>
-			<p class="text-white font-medium">{job.title}</p>
+			<a href="/jobs/{job.id}" class="text-white font-medium">{job.title}</a>
 		</li>
 	{/each}
 </ul>

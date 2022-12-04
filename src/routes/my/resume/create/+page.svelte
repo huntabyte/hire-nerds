@@ -10,7 +10,7 @@
 			<Input id="lastName" type="text" label="Last Name" />
 			<Input id="location" type="text" label="City, State" />
 			<div class="w-full max-w-lg">
-				<button type="submit" class="btn btn-primary w-full"> Build Resume </button>
+				<button type="submit" class="btn btn-primary w-full"> Start Resume </button>
 			</div>
 		</form>
 	</div>
