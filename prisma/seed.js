@@ -127,13 +127,16 @@ const createResume = async (profile) => {
 			resumeId: resume.id,
 		},
 	});
+
+	return resume;
 };
 
-const createJobApplication = async (profile, job) => {
+const createJobApplication = async (profile, resume, job) => {
 	const application = await prisma.jobApplication.create({
 		data: {
 			userId: profile.id,
 			jobId: job.id,
+			resumeId: resume.id,
 		},
 	});
 	return application;
@@ -191,8 +194,7 @@ async function main() {
 		}
 
 		for (const jobIdx of jobsToApply) {
-			console.log(jobIdx);
-			await createJobApplication(profile, jobs[jobIdx]);
+			await createJobApplication(profile, resume, jobs[jobIdx]);
 		}
 		jobsToApply = [];
 	}

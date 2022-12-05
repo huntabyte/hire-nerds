@@ -34,39 +34,23 @@
 					</th>
 					<td>
 						<div class="flex items-center space-x-3">
-							<div class="avatar">
-								<div class="mask mask-squircle w-12 h-12">
-									<img
-										src="/tailwind-css-component-profile-2@56w.png"
-										alt="Avatar Tailwind CSS Component"
-									/>
-								</div>
-							</div>
 							<div>
 								<div class="font-bold">{job.title}</div>
-								<div class="text-sm opacity-50">{job.location}</div>
+								<div class="text-sm opacity-50">📍{job.location}</div>
 							</div>
 						</div>
 					</td>
 					<td>
-						<span class="badge badge-ghost ">{job.applications.length}</span>
+						<a href="/employers/jobs/{job.id}/applications" class="badge badge-ghost "
+							>{job.applications.length}</a
+						>
 					</td>
 					<td>1d</td>
 					<th>
-						<button class="btn btn-ghost btn-xs">details</button>
+						<a href="/employers/jobs/{job.id}" class="btn btn-ghost btn-xs">details</a>
 					</th>
 				</tr>
 			{/each}
 		</tbody>
-		<!-- foot -->
-		<tfoot>
-			<tr>
-				<th />
-				<th>Name</th>
-				<th>Job</th>
-				<th>Favorite Color</th>
-				<th />
-			</tr>
-		</tfoot>
 	</table>
 </div>

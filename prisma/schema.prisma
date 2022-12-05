@@ -19,8 +19,8 @@ model Profile {
     organization OrganizationUser?
     Job          Job[]
 
-    resume         Resume?
-    JobApplication JobApplication[]
+    resume    Resume?
+    appliedTo JobApplication[]
 
     @@map("profiles")
 }
@@ -131,7 +131,7 @@ enum CompensationType {
 model Job {
     id            String           @id @default(uuid())
     title         String
-    type          JobType[]
+    type          JobType
     location      String
     compType      CompensationType @map("comp_type")
     payScaleBegin Int              @map("pay_scale_begin")
@@ -164,9 +164,10 @@ model JobApplication {
     user   Profile @relation(fields: [userId], references: [id])
     userId String  @map("user_id")
 
-    status   JobApplicationStatus @default(APPLIED)
-    resume   Resume?              @relation(fields: [resumeId], references: [id])
-    resumeId String?
+    status JobApplicationStatus @default(APPLIED)
+
+    resume   Resume @relation(fields: [resumeId], references: [id])
+    resumeId String @map("resume_id")
 
     @@id([userId, jobId])
     @@map("job_applications")

@@ -72,6 +72,7 @@ export const actions: Actions = {
 				data: {
 					userId: locals.session.user.id,
 					jobId: params.jobId,
+					resumeId: resume.id,
 				},
 			});
 		} catch (err) {
