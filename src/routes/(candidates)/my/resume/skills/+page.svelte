@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Input } from '$lib/components';
+	import { Input } from '$lib/components'
 </script>
 
 <div class="flex flex-col w-full h-full p-2">

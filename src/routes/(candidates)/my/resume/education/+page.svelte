@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Input, Checkbox } from '$lib/components';
+	import { Input, Checkbox } from '$lib/components'
 </script>
 
 <div class="flex flex-col w-full h-full p-2">

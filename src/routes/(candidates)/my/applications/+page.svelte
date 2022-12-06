@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { formatDistanceToNowStrict } from 'date-fns';
-	import type { PageData } from './$types';
+	import { formatDistanceToNowStrict } from 'date-fns'
+	import type { PageData } from './$types'
 
-	export let data: PageData;
+	export let data: PageData
 
-	$: ({ applications } = data);
+	$: ({ applications } = data)
 </script>
 
 <section class="card !bg-accent-500/5">

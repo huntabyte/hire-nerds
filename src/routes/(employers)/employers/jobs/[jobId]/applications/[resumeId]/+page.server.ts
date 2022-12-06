@@ -1,10 +1,10 @@
-import { prisma } from '$lib/server/prisma';
-import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { prisma } from '$lib/server/prisma'
+import { redirect } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ locals, params }) => {
 	if (!locals.session?.user) {
-		throw redirect(303, '/login');
+		throw redirect(303, '/login')
 	}
 
 	// TODO: Test security of this route with unauth/non-org user
@@ -19,12 +19,12 @@ export const load: PageServerLoad = ({ locals, params }) => {
 				experience: true,
 				education: true,
 			},
-		});
+		})
 
-		return resume;
-	};
+		return resume
+	}
 
 	return {
 		resume: getResume(params.resumeId),
-	};
-};
+	}
+}

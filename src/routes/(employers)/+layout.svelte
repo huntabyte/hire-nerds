@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Navbar } from '$lib/components';
-	import Navigation from '$lib/components/navigation/Navigation.svelte';
-	import { storeDrawer } from '$lib/stores/ui';
-	import type { NavLink } from '$lib/types';
-	import { AppBar, AppShell, Drawer } from '@skeletonlabs/skeleton';
+	import { Navbar } from '$lib/components'
+	import Navigation from '$lib/components/navigation/Navigation.svelte'
+	import { storeDrawer } from '$lib/stores/ui'
+	import type { NavLink } from '$lib/types'
+	import { AppBar, AppShell, Drawer } from '@skeletonlabs/skeleton'
 
 	const sidebarNav: NavLink[] = [
 		{
@@ -18,18 +18,18 @@
 			title: 'Team',
 			href: '/employers/team'
 		}
-	];
+	]
 	const topNav: NavLink[] = [
 		{
 			title: 'Candidate View',
 			href: '/'
 		}
-	];
+	]
 
-	const combinedNav = [...sidebarNav, ...topNav];
+	const combinedNav = [...sidebarNav, ...topNav]
 
 	function drawerOpen(): void {
-		storeDrawer.set(true);
+		storeDrawer.set(true)
 	}
 </script>
 

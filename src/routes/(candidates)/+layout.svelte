@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { storeDrawer } from '$lib/stores/ui';
-	import { AppBar, AppShell, Drawer } from '@skeletonlabs/skeleton';
-	import type { NavLink } from '$lib/types';
+	import { storeDrawer } from '$lib/stores/ui'
+	import { AppBar, AppShell, Drawer } from '@skeletonlabs/skeleton'
+	import type { NavLink } from '$lib/types'
 
-	import { Navigation } from '$lib/components';
+	import { Navigation } from '$lib/components'
 	const navItems: NavLink[] = [
 		{
 			title: 'Home',
@@ -25,10 +25,10 @@
 			title: 'Employer View',
 			href: '/employers'
 		}
-	];
+	]
 
 	function drawerOpen(): void {
-		storeDrawer.set(true);
+		storeDrawer.set(true)
 	}
 </script>
 

@@ -1,10 +1,10 @@
-import { prisma } from '$lib/server/prisma';
-import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { prisma } from '$lib/server/prisma'
+import { redirect } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ locals }) => {
 	if (!locals.session?.user) {
-		throw redirect(303, '/login');
+		throw redirect(303, '/login')
 	}
 
 	const getUserJobApplications = async (userId: string) => {
@@ -28,12 +28,12 @@ export const load: PageServerLoad = ({ locals }) => {
 					},
 				},
 			},
-		});
+		})
 
-		return applications;
-	};
+		return applications
+	}
 
 	return {
 		applications: getUserJobApplications(locals.session.user.id),
-	};
-};
+	}
+}

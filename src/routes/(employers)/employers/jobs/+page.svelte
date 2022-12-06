@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { JobPostingDataTable } from '$lib/components';
-	import type { PageData } from './$types';
+	import { JobPostingDataTable } from '$lib/components'
+	import type { PageData } from './$types'
 
-	export let data: PageData;
+	export let data: PageData
 
-	$: ({ jobs } = data);
+	$: ({ jobs } = data)
 </script>
 
 <div class="p-4">

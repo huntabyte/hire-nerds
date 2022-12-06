@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { CandidatesDataTable } from '$lib/components';
+	import type { PageData } from './$types'
+	import { CandidatesDataTable } from '$lib/components'
 
-	export let data: PageData;
+	export let data: PageData
 
-	$: ({ applications } = data);
+	$: ({ applications } = data)
 </script>
 
 <div class="p-4">

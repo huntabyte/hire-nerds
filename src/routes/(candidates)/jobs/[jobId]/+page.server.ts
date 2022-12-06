@@ -1,6 +1,6 @@
-import { prisma } from '$lib/server/prisma';
-import { error, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
+import { prisma } from '$lib/server/prisma'
+import { error, redirect } from '@sveltejs/kit'
+import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ params, locals }) => {
 	const getJob = async (jobId: string) => {
@@ -8,18 +8,18 @@ export const load: PageServerLoad = ({ params, locals }) => {
 			where: {
 				id: jobId,
 			},
-		});
-		return job;
-	};
+		})
+		return job
+	}
 
 	const getApplicationCount = async (jobId: string) => {
 		const count = await prisma.jobApplication.count({
 			where: {
 				jobId: jobId,
 			},
-		});
-		return count;
-	};
+		})
+		return count
+	}
 
 	const getApplicationStatus = async (userId: string, jobId: string) => {
 		const hasApplied = await prisma.jobApplication.findFirst({
@@ -27,44 +27,44 @@ export const load: PageServerLoad = ({ params, locals }) => {
 				jobId: jobId,
 				userId: userId,
 			},
-		});
+		})
 
 		if (hasApplied) {
-			return true;
+			return true
 		} else {
-			return false;
+			return false
 		}
-	};
+	}
 
 	if (!locals.session?.user) {
 		return {
 			job: getJob(params.jobId),
 			applicationCount: getApplicationCount(params.jobId),
 			hasApplied: false,
-		};
+		}
 	}
 
 	return {
 		job: getJob(params.jobId),
 		applicationCount: getApplicationCount(params.jobId),
 		hasApplied: getApplicationStatus(locals.session.user.id, params.jobId),
-	};
-};
+	}
+}
 
 export const actions: Actions = {
 	apply: async ({ locals, params }) => {
 		if (!locals.session?.user) {
-			throw redirect(303, '/login');
+			throw redirect(303, '/login')
 		}
 
 		const resume = await prisma.resume.findFirst({
 			where: {
 				userId: locals.session.user.id,
 			},
-		});
+		})
 
 		if (!resume) {
-			throw redirect(303, '/resume/create');
+			throw redirect(303, '/resume/create')
 		}
 
 		try {
@@ -74,14 +74,14 @@ export const actions: Actions = {
 					jobId: params.jobId,
 					resumeId: resume.id,
 				},
-			});
+			})
 		} catch (err) {
-			console.log('Error: ', err);
-			throw error(500, 'Something went wrong');
+			console.log('Error: ', err)
+			throw error(500, 'Something went wrong')
 		}
 
 		return {
 			success: true,
-		};
+		}
 	},
-};
+}

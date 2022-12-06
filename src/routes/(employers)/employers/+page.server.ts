@@ -1,10 +1,10 @@
-import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ parent }) => {
-	const { organization } = await parent();
+	const { organization } = await parent()
 
 	if (!organization) {
-		throw redirect(303, '/employers/onboarding');
+		throw redirect(303, '/employers/onboarding')
 	}
-};
+}

@@ -1,24 +1,24 @@
 <script lang="ts">
-	import { enhance, type SubmitFunction } from '$app/forms';
-	import toast from 'svelte-french-toast';
-	import type { PageData } from './$types';
+	import { enhance, type SubmitFunction } from '$app/forms'
+	import toast from 'svelte-french-toast'
+	import type { PageData } from './$types'
 
-	export let data: PageData;
+	export let data: PageData
 
-	$: ({ job, session, applicationCount, hasApplied } = data);
+	$: ({ job, session, applicationCount, hasApplied } = data)
 
 	const submitApplication: SubmitFunction = () => {
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
-					toast.success('Successfully applied!');
-					break;
+					toast.success('Successfully applied!')
+					break
 				default:
-					break;
+					break
 			}
-			await update();
-		};
-	};
+			await update()
+		}
+	}
 </script>
 
 {#if job}

@@ -1,8 +1,8 @@
-import { prisma } from '$lib/server/prisma';
-import type { PageServerLoad } from './$types';
+import { prisma } from '$lib/server/prisma'
+import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ params, parent }) => {
-	await parent();
+	await parent()
 
 	const getJobApplications = async (jobId: string) => {
 		const applications = await prisma.jobApplication.findMany({
@@ -18,23 +18,23 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 					},
 				},
 			},
-		});
+		})
 
 		const applicationsWithResume = applications.map((application) => {
-			const resume = application.resume;
+			const resume = application.resume
 
 			return {
 				...application,
 				firstName: resume.firstName,
 				lastName: resume.lastName,
 				location: resume.location,
-			};
-		});
+			}
+		})
 
-		return applicationsWithResume;
-	};
+		return applicationsWithResume
+	}
 
 	return {
 		applications: getJobApplications(params.jobId),
-	};
-};
+	}
+}

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import type { PageData } from './$types'
 
-	export let data: PageData;
+	export let data: PageData
 
-	$: ({ resume } = data);
+	$: ({ resume } = data)
 </script>
 
 <div class="flex flex-col w-full h-full p-2">
