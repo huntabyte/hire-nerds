@@ -1,11 +1,11 @@
 <script lang="ts">
 	interface $$Props extends Partial<svelte.JSX.HTMLAttributes<HTMLElementTagNameMap['input']>> {
-		label: string;
-		group: string;
+		label: string
+		group: string
 	}
 
-	export let label: string;
-	export let group: string;
+	export let label: string
+	export let group: string
 </script>
 
 <div>

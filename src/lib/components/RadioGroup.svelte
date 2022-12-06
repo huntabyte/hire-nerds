@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { writable, type Writable } from 'svelte/store';
-	import type { IInput } from '$lib/types';
-	import { RadioItem } from '$lib/components';
-	import { RadioGroup } from '@skeletonlabs/skeleton';
+	import { writable, type Writable } from 'svelte/store'
+	import type { IInput } from '$lib/types'
+	import { RadioItem } from '$lib/components'
+	import { RadioGroup } from '@skeletonlabs/skeleton'
 
-	export let inputList: IInput[];
+	export let inputList: IInput[]
 
-	export let label: string;
+	export let label: string
 
-	const storeLayout: Writable<string> = writable('horz');
+	const storeLayout: Writable<string> = writable('horz')
 </script>
 
 <label for=""><span>{label}</span></label>

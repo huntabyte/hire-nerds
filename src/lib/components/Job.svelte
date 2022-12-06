@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Job, Organization } from '@prisma/client';
+	import type { Job, Organization } from '@prisma/client'
 
 	interface JobOrg extends Job {
-		organization: Organization;
+		organization: Organization
 	}
 
-	export let job: JobOrg;
+	export let job: JobOrg
 </script>
 
 <div class="card bg-base-300 shadow-xl">

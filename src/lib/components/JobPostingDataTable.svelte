@@ -11,17 +11,17 @@
 		tableInteraction,
 		tableA11y,
 		Paginator
-	} from '@skeletonlabs/skeleton';
-	import { writable, type Writable } from 'svelte/store';
-	import { jobType, jobCompType, jobLocType } from '$lib/constants';
-	import { formatDistanceToNowStrict } from 'date-fns';
+	} from '@skeletonlabs/skeleton'
+	import { writable, type Writable } from 'svelte/store'
+	import { jobType, jobCompType, jobLocType } from '$lib/constants'
+	import { formatDistanceToNowStrict } from 'date-fns'
 
 	const nf = new Intl.NumberFormat('en-US', {
 		style: 'currency',
 		currency: 'USD'
-	});
+	})
 
-	export let sourceData: any[];
+	export let sourceData: any[]
 
 	const dataTableModel: Writable<DataTableModel> = writable({
 		// The original unfiltered source data.
@@ -36,10 +36,10 @@
 		sort: '',
 		// Optional: The Paginator component settings.
 		pagination: { offset: 0, limit: 5, size: 0, amounts: [1, 2, 5, 10] }
-	});
+	})
 
 	// Automatically handles search, sort, etc when the model updates.
-	dataTableModel.subscribe((v) => dataTableHandler(v));
+	dataTableModel.subscribe((v) => dataTableHandler(v))
 </script>
 
 <section class="card !bg-accent-500/5">
@@ -51,7 +51,7 @@
 			<table class="table table-hover" role="grid" use:tableInteraction use:tableA11y>
 				<thead
 					on:click={(e) => {
-						dataTableSort(e, dataTableModel);
+						dataTableSort(e, dataTableModel)
 					}}
 					on:keypress
 				>
@@ -60,7 +60,7 @@
 							><input
 								type="checkbox"
 								on:click={(e) => {
-									dataTableSelectAll(e, dataTableModel);
+									dataTableSelectAll(e, dataTableModel)
 								}}
 							/></th
 						>

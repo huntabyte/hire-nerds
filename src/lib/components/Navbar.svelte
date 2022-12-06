@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import type { Link } from '$lib/types';
+	import { page } from '$app/stores'
+	import type { Link } from '$lib/types'
 
-	export let navItems: Link[];
+	export let navItems: Link[]
 </script>
 
 <div class="flex w-full justify-between items-center p-4">
