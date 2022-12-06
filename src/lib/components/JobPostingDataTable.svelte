@@ -1,4 +1,5 @@
 <script lang="ts">
+	// @ts-ignore
 	import {
 		// Types
 		type DataTableModel,
@@ -12,6 +13,13 @@
 		Paginator
 	} from '@skeletonlabs/skeleton';
 	import { writable, type Writable } from 'svelte/store';
+	import { jobType, jobCompType, jobLocType } from '$lib/constants';
+	import { formatDistanceToNowStrict } from 'date-fns';
+
+	const nf = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD'
+	});
 
 	export let sourceData: any[];
 
@@ -56,25 +64,43 @@
 								}}
 							/></th
 						>
-						<th data-sort="lastName">Candidate Name</th>
+						<th data-sort="lastName">Title</th>
 						<th data-sort="location">Location</th>
-						<th>Rating</th>
+						<th data-sort="type">Type</th>
+						<th data-sort="payScaleBegin">Pay Scale</th>
+						<th data-sort="compType">Comp Type</th>
+						<th data-sort="jobLocType">Location Type</th>
+						<th data-sort="_count.applications">Applicants</th>
+						<th data-sort="createdAt">Posted</th>
 						<th data-sort="status">Status</th>
 						<th />
 					</tr>
 				</thead>
 				<tbody>
-					{#each $dataTableModel.filtered as row, rowIndex}
+					{#each $dataTableModel.filtered as row}
 						<tr class:table-row-checked={row.dataTableChecked}>
 							<td><input type="checkbox" bind:checked={row.dataTableChecked} /></td>
-							<td class="md:!whitespace-normal capitalize">{row.firstName} {row.lastName}</td>
+							<td class="md:!whitespace-normal capitalize">{row.title}</td>
 							<td class="md:!whitespace-normal capitalize">{row.location}</td>
-							<td class="md:!whitespace-normal capitalize">5/10</td>
+							<td class="md:!whitespace-normal capitalize">{jobType[`${row.type}`]}</td>
+							<td class="md:!whitespace-normal capitalize"
+								>{nf.formatRange(row.payScaleBegin, row.payScaleEnd)}
+							</td>
+							<td class="md:!whitespace-normal capitalize">{jobCompType[`${row.compType}`]}</td>
+							<td class="md:!whitespace-normal capitalize">{jobLocType[`${row.jobLocType}`]}</td>
+							<td class="md:!whitespace-normal capitalize">
+								<a href="/employers/jobs/{row.id}/applications">
+									{row['_count'].applications}
+								</a>
+							</td>
+							<td class="md:!whitespace-normal">{formatDistanceToNowStrict(row.createdAt)} ago</td>
 							<td class="md:!whitespace-normal capitalize">
 								<span class="badge bg-primary-500">{row.status}</span>
 							</td>
 							<td role="gridcell" aria-colindex={6} tabindex="0" class="table-cell-fit">
-								<a href="#" class="btn btn-ghost-surface btn-sm"> View Application </a>
+								<a href="/employers/jobs/{row.id}" class="btn btn-ghost-surface btn-sm">
+									View Job
+								</a>
 							</td>
 						</tr>
 					{/each}

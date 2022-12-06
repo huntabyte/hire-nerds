@@ -1,27 +1,21 @@
 <script lang="ts">
+	import { writable, type Writable } from 'svelte/store';
 	import type { IInput } from '$lib/types';
+	import { RadioItem } from '$lib/components';
+	import { RadioGroup } from '@skeletonlabs/skeleton';
 
 	export let inputList: IInput[];
 
 	export let label: string;
-	export let group: string;
+
+	const storeLayout: Writable<string> = writable('horz');
 </script>
 
-<fieldset class="max-w-lg flex-1">
-	<!-- svelte-ignore a11y-label-has-associated-control -->
-	<label class="label font-medium pb-1">{label}</label>
-	{#each inputList as i}
-		<div class="form-control ">
-			<label class="label cursor-pointer justify-start space-x-4">
-				<input
-					type="radio"
-					name={i.name}
-					class="radio checked:bg-blue-500"
-					bind:group
-					value={i.value}
-				/>
-				<span class="label-text">{i.label}</span>
-			</label>
-		</div>
+<label for=""><span>{label}</span></label>
+<RadioGroup selected={storeLayout} class="mb-2">
+	{#each inputList as input}
+		<RadioItem value={input.value} name={input.name}>
+			{input.label}
+		</RadioItem>
 	{/each}
-</fieldset>
+</RadioGroup>

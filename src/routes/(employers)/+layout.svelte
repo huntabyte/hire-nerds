@@ -48,7 +48,9 @@
 							</svg>
 						</span>
 					</button>
-					<strong class="text-xl uppercase">Hire Nerds</strong>
+					<a href="/employers">
+						<strong class="text-xl uppercase">Hire Nerds</strong>
+					</a>
 				</div>
 			</svelte:fragment>
 

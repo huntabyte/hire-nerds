@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CandidatesDataTable from '$lib/components/CandidatesDataTable.svelte';
+	import { JobPostingDataTable } from '$lib/components';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -7,6 +7,6 @@
 	$: ({ jobs } = data);
 </script>
 
-<pre>
-    {JSON.stringify(jobs, null, 2)}
-</pre>
+<div class="p-4">
+	<JobPostingDataTable sourceData={jobs} />
+</div>

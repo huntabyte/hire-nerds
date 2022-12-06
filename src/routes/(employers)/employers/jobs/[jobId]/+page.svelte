@@ -58,34 +58,31 @@
 	$: ({ job } = data);
 </script>
 
-<form
-	action="?/postJob"
-	method="POST"
-	class="flex flex-col items-center space-y-2 w-full max-w-lg mx-auto"
->
-	<h1 class="text-white font-semibold text-3xl text-center">{job.title}</h1>
-	<Input id="title" label="Job Title" value={job.title} />
-	<Input id="location" label="Location" value={job.location} />
-	<div class="w-full">
-		<!-- svelte-ignore a11y-label-has-associated-control -->
-		<label class="label font-medium text-start self-start">Pay Scale</label>
-		<div class="flex justify-between w-full space-x-4">
-			<Input
-				id="payScaleBegin"
-				label="Starting Pay Scale"
-				type="number"
-				value={job.payScaleBegin}
-			/>
-			<Input id="payScaleEnd" label="Ending Pay Scale" type="number" value={job.payScaleEnd} />
-		</div>
-		<div class="flex w-full max-w-lg flex-wrap md:flex-nowrap">
-			<RadioGroup label="Type" inputList={jobTypeInputs} group={job.type} />
-			<RadioGroup label="Compensation Type" inputList={compTypeInputs} group={job.compType} />
-			<RadioGroup label="Location Type" inputList={jobLocTypeInputs} group={job.jobLocType} />
-		</div>
-	</div>
-	<Textarea id="description" label="Job Description" />
-	<div class="w-full">
-		<button type="submit" class="btn btn-primary w-full"> Update Job Posting </button>
+<form action="?/postJob" method="POST" class="flex flex-col mx-auto gap-4 p-4 max-w-2xl">
+	<h1>{job.title}</h1>
+	<fieldset>
+		<span>Information</span>
+		<Input id="title" label="Job Title" type="text" value={job.title} />
+		<Input id="location" label="Location" type="text" value={job.location} />
+		<Textarea id="description" label="Job Description" />
+	</fieldset>
+
+	<fieldset>
+		<span>Pay Scale</span>
+		<Input id="payScaleBegin" label="Starting Pay Scale" type="number" value={job.payScaleBegin} />
+
+		<Input id="payScaleEnd" label="Ending Pay Scale" type="number" value={job.payScaleEnd} />
+	</fieldset>
+	<fieldset>
+		<span>Additional Info</span>
+		<RadioGroup label="Type" inputList={jobTypeInputs} />
+		<RadioGroup label="Compensation Type" inputList={compTypeInputs} />
+		<RadioGroup label="Location Type" inputList={jobLocTypeInputs} />
+	</fieldset>
+
+	<div>
+		<button type="submit" class="btn bg-primary-500 btn-base text-white">
+			Update Job Posting
+		</button>
 	</div>
 </form>

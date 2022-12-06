@@ -21,6 +21,8 @@ model Profile {
 
     resume    Resume?
     appliedTo JobApplication[]
+    createdAt DateTime         @default(now())
+    updatedAt DateTime         @updatedAt
 
     @@map("profiles")
 }
@@ -37,6 +39,9 @@ model Resume {
     skills     ResumeSkills[]
     appliedTo  JobApplication[]
 
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
     @@map("resumes")
 }
 
@@ -51,6 +56,9 @@ model ResumeEducation {
     currentlyEnrolled Boolean  @default(false) @map("currently_enrolled")
     enrolledFrom      DateTime @map("enrolled_from")
     enrolledTo        DateTime @map("enrolled_to")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@map("resume_educations")
 }
@@ -67,6 +75,9 @@ model ResumeExperience {
     employedTo        DateTime? @map("employed_to")
     description       String?
 
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
     @@map("resume_experience")
 }
 
@@ -77,6 +88,9 @@ model ResumeSkills {
     resumeId String? @map("resume_id")
 
     name String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@map("resume_skills")
 }
@@ -89,6 +103,9 @@ model Organization {
 
     organizationUsers OrganizationUser[]
     Job               Job[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@map("organizations")
 }
@@ -106,6 +123,9 @@ model OrganizationUser {
     userId String  @unique @map("user_id")
 
     role OrganizationRole @default(RECRUITER)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@id([userId, organizationId])
     @@map("organizations_users")
@@ -128,6 +148,12 @@ enum CompensationType {
     HOURLY
 }
 
+enum JobStatus {
+    OPEN
+    PAUSED
+    CLOSED
+}
+
 model Job {
     id            String           @id @default(uuid())
     title         String
@@ -138,6 +164,7 @@ model Job {
     payScaleEnd   Int              @map("pay_scale_end")
     description   String
     jobLocType    JobLocType       @map("job_location_type")
+    status        JobStatus        @default(OPEN)
 
     organization   Organization @relation(fields: [organizationId], references: [id])
     organizationId String       @map("organization_id")
@@ -145,6 +172,9 @@ model Job {
     user         Profile          @relation(fields: [userId], references: [id])
     userId       String           @map("user_id")
     applications JobApplication[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@map("jobs")
 }
@@ -166,8 +196,10 @@ model JobApplication {
 
     status JobApplicationStatus @default(APPLIED)
 
-    resume   Resume @relation(fields: [resumeId], references: [id])
-    resumeId String @map("resume_id")
+    resume    Resume   @relation(fields: [resumeId], references: [id])
+    resumeId  String   @map("resume_id")
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@id([userId, jobId])
     @@map("job_applications")

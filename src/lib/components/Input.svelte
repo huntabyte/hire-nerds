@@ -7,11 +7,15 @@
 	export let label: string;
 </script>
 
-<div class="form-control w-full max-w-lg mb-2">
-	<label for={id} class="label font-medium pb-1">
-		<span class="label-text">
-			{label}
-		</span>
-	</label>
-	<input class="input input-bordered w-full max-w-lg mb-2" name={id} {...$$restProps} />
-</div>
+<label for={id} class="mb-2">
+	<span>
+		{label}
+	</span>
+	<input name={id} {...$$restProps} />
+</label>
+
+<style>
+	label {
+		flex: 1;
+	}
+</style>

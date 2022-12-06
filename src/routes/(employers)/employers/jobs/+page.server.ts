@@ -14,9 +14,14 @@ export const load: PageServerLoad = async ({ locals, parent }) => {
 				organizationId: organizationId,
 			},
 			include: {
-				applications: true,
+				_count: {
+					select: {
+						applications: true,
+					},
+				},
 			},
 		});
+
 		return jobs;
 	};
 	return {

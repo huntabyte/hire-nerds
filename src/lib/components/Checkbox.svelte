@@ -7,9 +7,9 @@
 	export let label: string;
 </script>
 
-<div class="form-control w-full max-w-lg mb-2">
-	<label class="label cursor-pointer justify-start space-x-3">
-		<input name={id} type="checkbox" class="checkbox checkbox-primary" />
-		<span class="label-text">{label}</span>
+<div>
+	<label>
+		<input name={id} type="checkbox" />
+		<span>{label}</span>
 	</label>
 </div>

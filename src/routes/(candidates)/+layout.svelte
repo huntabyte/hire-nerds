@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { storeDrawer } from '$lib/stores/ui';
 	import { AppBar, AppShell, Drawer } from '@skeletonlabs/skeleton';
-	import { writable, type Writable } from 'svelte/store';
 	import type { NavLink } from '$lib/types';
 
 	import { Navigation } from '$lib/components';
@@ -13,6 +12,10 @@
 		{
 			title: 'Profile',
 			href: '/my/profile'
+		},
+		{
+			title: 'Applications',
+			href: '/my/applications'
 		},
 		{
 			title: 'Jobs',
@@ -44,7 +47,9 @@
 							</svg>
 						</span>
 					</button>
-					<strong class="text-xl uppercase">Hire Nerds</strong>
+					<a href="/">
+						<strong class="text-xl uppercase">Hire Nerds</strong>
+					</a>
 				</div>
 			</svelte:fragment>
 

@@ -7,11 +7,11 @@
 	export let label: string;
 </script>
 
-<div class="form-control w-full max-w-lg mb-2">
-	<label for={id} class="label font-medium pb-1">
-		<span class="label-text">
+<div>
+	<label for={id}>
+		<span>
 			{label}
 		</span>
 	</label>
-	<textarea class="textarea textarea-bordered w-full max-w-lg mb-2" name={id} {...$$restProps} />
+	<textarea name={id} {...$$restProps} />
 </div>
