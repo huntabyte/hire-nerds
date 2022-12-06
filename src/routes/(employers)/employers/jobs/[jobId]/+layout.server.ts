@@ -1,6 +1,5 @@
 import { prisma } from '$lib/server/prisma';
 import type { IJob } from '$lib/types';
-import type { Organization } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 

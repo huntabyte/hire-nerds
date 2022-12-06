@@ -8,11 +8,11 @@ import EmployerJob from './employers/EmployerJob.svelte';
 import EmployerJobTable from './employers/EmployerJobTable.svelte';
 import RadioGroup from './RadioGroup.svelte';
 import Navigation from './navigation/Navigation.svelte';
-import DataTable from './DataTable.svelte';
+import CandidatesDataTable from './CandidatesDataTable.svelte';
 
 export {
 	Checkbox,
-	DataTable,
+	CandidatesDataTable,
 	EmployerJob,
 	EmployerJobTable,
 	Navbar,

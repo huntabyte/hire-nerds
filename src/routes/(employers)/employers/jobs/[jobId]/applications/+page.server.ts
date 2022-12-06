@@ -20,7 +20,18 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 			},
 		});
 
-		return applications;
+		const applicationsWithResume = applications.map((application) => {
+			const resume = application.resume;
+
+			return {
+				...application,
+				firstName: resume.firstName,
+				lastName: resume.lastName,
+				location: resume.location,
+			};
+		});
+
+		return applicationsWithResume;
 	};
 
 	return {

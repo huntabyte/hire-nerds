@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { DataTable } from '$lib/components';
+	import { CandidatesDataTable } from '$lib/components';
 
 	export let data: PageData;
 
@@ -8,5 +8,5 @@
 </script>
 
 <div class="p-4">
-	<DataTable sourceData={applications} />
+	<CandidatesDataTable sourceData={applications} />
 </div>

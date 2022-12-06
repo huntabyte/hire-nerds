@@ -21,5 +21,6 @@
 <style>
 	.list-nav a {
 		border-radius: 6px;
+		font-weight: 600;
 	}
 </style>
