@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { storeDrawer } from '$lib/stores/ui'
-	import { AppBar, AppShell, Drawer } from '@skeletonlabs/skeleton'
+	import { AppBar, AppShell, Avatar, Drawer, menu } from '@skeletonlabs/skeleton'
 	import type { NavLink } from '$lib/types'
 
 	import { Navigation } from '$lib/components'
+	import { enhance } from '$app/forms'
 	const navItems: NavLink[] = [
 		{
 			title: 'Home',
@@ -24,6 +25,17 @@
 		{
 			title: 'Employer View',
 			href: '/employers'
+		}
+	]
+
+	const userMenu: NavLink[] = [
+		{
+			title: 'Profile',
+			href: '/my/profile'
+		},
+		{
+			title: 'Resume',
+			href: '/my/resume'
 		}
 	]
 
@@ -57,6 +69,29 @@
 				{#each navItems as item}
 					<a class="btn btn-sm" href={item.href}>{item.title}</a>
 				{/each}
+				<span class="relative">
+					<button use:menu={{ menu: 'navigation' }}
+						><Avatar
+							initials="HJ"
+							border="border-2 border-surface-300-600-token hover:!border-primary-500 cursor-pointer"
+						/></button
+					>
+					<nav class="list-nav card p-4 w-48 shadow-xl" data-menu="navigation">
+						<ul>
+							{#each userMenu as item}
+								<li>
+									<a href={item.href}>{item.title}</a>
+								</li>
+							{/each}
+
+							<li>
+								<form action="/logout" method="POST" use:enhance>
+									<button type="submit" class="option w-full">Sign Out</button>
+								</form>
+							</li>
+						</ul>
+					</nav>
+				</span>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>

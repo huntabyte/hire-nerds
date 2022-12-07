@@ -46,6 +46,8 @@ export const actions: Actions = {
 			throw error(500, 'Something went wrong adding experience.')
 		}
 
-		throw redirect(303, '/my/resume/skills')
+		return {
+			success: true,
+		}
 	},
 }

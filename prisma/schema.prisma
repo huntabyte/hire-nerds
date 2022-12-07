@@ -21,8 +21,8 @@ model Profile {
 
     resume    Resume?
     appliedTo JobApplication[]
-    createdAt DateTime         @default(now())
-    updatedAt DateTime         @updatedAt
+    createdAt DateTime         @default(now()) @map("created_at")
+    updatedAt DateTime         @updatedAt @map("updated_at")
 
     @@map("profiles")
 }
@@ -34,13 +34,14 @@ model Resume {
     firstName  String             @map("first_name")
     lastName   String             @map("last_name")
     location   String
+    summary    String?
     education  ResumeEducation[]
     experience ResumeExperience[]
     skills     ResumeSkills[]
     appliedTo  JobApplication[]
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@map("resumes")
 }
@@ -57,8 +58,8 @@ model ResumeEducation {
     enrolledFrom      DateTime @map("enrolled_from")
     enrolledTo        DateTime @map("enrolled_to")
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@map("resume_educations")
 }
@@ -71,12 +72,12 @@ model ResumeExperience {
     company           String?   @map("company")
     location          String?   @map("location")
     currentlyEmployed Boolean?  @default(false) @map("currently_employed")
-    employedFrom      DateTime? @map("employed_from")
-    employedTo        DateTime? @map("employed_to")
+    startDate         DateTime? @map("start_date")
+    endDate           DateTime? @map("end_date")
     description       String?
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@map("resume_experience")
 }
@@ -89,8 +90,8 @@ model ResumeSkills {
 
     name String
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@map("resume_skills")
 }
@@ -104,8 +105,8 @@ model Organization {
     organizationUsers OrganizationUser[]
     Job               Job[]
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@map("organizations")
 }
@@ -124,8 +125,8 @@ model OrganizationUser {
 
     role OrganizationRole @default(RECRUITER)
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@id([userId, organizationId])
     @@map("organizations_users")
@@ -173,8 +174,8 @@ model Job {
     userId       String           @map("user_id")
     applications JobApplication[]
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@map("jobs")
 }
@@ -198,8 +199,8 @@ model JobApplication {
 
     resume    Resume   @relation(fields: [resumeId], references: [id])
     resumeId  String   @map("resume_id")
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     @@id([userId, jobId])
     @@map("job_applications")

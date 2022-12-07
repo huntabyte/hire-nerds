@@ -1,19 +1,19 @@
-import * as dotenv from 'dotenv';
-import { createClient } from '@supabase/supabase-js';
-import { faker } from '@faker-js/faker';
-import { PrismaClient } from '@prisma/client';
-dotenv.config();
+import * as dotenv from 'dotenv'
+import { createClient } from '@supabase/supabase-js'
+import { faker } from '@faker-js/faker'
+import { PrismaClient } from '@prisma/client'
+dotenv.config()
 const prisma = new PrismaClient({
 	datasources: {
 		db: {
 			url: process.env.CONNECTION_POOL_URL,
 		},
 	},
-});
+})
 
 const createUser = async (userId) => {
-	const firstName = faker.name.firstName();
-	const lastName = faker.name.lastName();
+	const firstName = faker.name.firstName()
+	const lastName = faker.name.lastName()
 
 	const profile = await prisma.profile.create({
 		data: {
@@ -21,10 +21,10 @@ const createUser = async (userId) => {
 			firstName,
 			lastName,
 		},
-	});
+	})
 
-	return profile;
-};
+	return profile
+}
 
 const createOrganization = async (profile) => {
 	const organization = await prisma.organization.create({
@@ -32,7 +32,7 @@ const createOrganization = async (profile) => {
 			name: faker.company.name(),
 			website: faker.internet.url(),
 		},
-	});
+	})
 	if (organization) {
 		const organizationUser = await prisma.organizationUser.create({
 			data: {
@@ -40,26 +40,26 @@ const createOrganization = async (profile) => {
 				userId: profile.id,
 				role: 'ADMIN',
 			},
-		});
+		})
 	}
-	return organization;
-};
+	return organization
+}
 
 const createManyJobs = async (profile, organization, numJobs) => {
-	const data = [];
+	const data = []
 
 	for (let i = 0; i < numJobs; i++) {
-		const compType = faker.helpers.arrayElement(['SALARY', 'HOURLY']);
-		let payScaleBegin;
-		let payScaleEnd;
+		const compType = faker.helpers.arrayElement(['SALARY', 'HOURLY'])
+		let payScaleBegin
+		let payScaleEnd
 
 		if (compType === 'SALARY') {
-			payScaleBegin = faker.datatype.number({ min: 20000, max: 1000000 });
-			payScaleEnd = faker.datatype.number({ min: payScaleBegin, max: 3000000 });
+			payScaleBegin = faker.datatype.number({ min: 20000, max: 1000000 })
+			payScaleEnd = faker.datatype.number({ min: payScaleBegin, max: 3000000 })
 		}
 		if (compType === 'HOURLY') {
-			payScaleBegin = faker.datatype.number({ min: 10, max: 300 });
-			payScaleEnd = faker.datatype.number({ min: payScaleBegin, max: 1000 });
+			payScaleBegin = faker.datatype.number({ min: 10, max: 300 })
+			payScaleEnd = faker.datatype.number({ min: payScaleBegin, max: 1000 })
 		}
 
 		data.push({
@@ -73,13 +73,13 @@ const createManyJobs = async (profile, organization, numJobs) => {
 			jobLocType: faker.helpers.arrayElement(['REMOTE', 'HYBRID', 'OFFICE']),
 			organizationId: organization.id,
 			userId: profile.id,
-		});
+		})
 	}
 	const jobs = await prisma.job.createMany({
 		data: data,
-	});
-	return jobs;
-};
+	})
+	return jobs
+}
 
 const createResume = async (profile) => {
 	const resume = await prisma.resume.create({
@@ -89,8 +89,8 @@ const createResume = async (profile) => {
 			location: faker.address.cityName(),
 			userId: profile.id,
 		},
-	});
-	const city = faker.address.cityName();
+	})
+	const city = faker.address.cityName()
 
 	const resumeEducation = await prisma.resumeEducation.create({
 		data: {
@@ -108,28 +108,28 @@ const createResume = async (profile) => {
 			currentlyEnrolled: faker.datatype.boolean(),
 			resumeId: resume.id,
 		},
-	});
+	})
 	const resumeExperience = await prisma.resumeExperience.create({
 		data: {
 			jobTitle: faker.name.jobTitle(),
 			company: faker.company.name(),
 			location: `${faker.address.cityName()} - ${faker.address.state()}`,
-			employedFrom: faker.date.past(),
-			employedTo: faker.date.past(),
+			startDate: faker.date.past(),
+			endDate: faker.date.past(),
 			currentlyEmployed: faker.datatype.boolean(),
 			resumeId: resume.id,
 		},
-	});
+	})
 
 	const resumeSkills = await prisma.resumeSkills.create({
 		data: {
 			name: faker.company.bsNoun(),
 			resumeId: resume.id,
 		},
-	});
+	})
 
-	return resume;
-};
+	return resume
+}
 
 const createJobApplication = async (profile, resume, job) => {
 	const application = await prisma.jobApplication.create({
@@ -138,9 +138,9 @@ const createJobApplication = async (profile, resume, job) => {
 			jobId: job.id,
 			resumeId: resume.id,
 		},
-	});
-	return application;
-};
+	})
+	return application
+}
 
 export const orgUserIds = [
 	'84d396af-e883-450d-a164-7c1399d6ae49',
@@ -148,7 +148,7 @@ export const orgUserIds = [
 	'06a92e5a-3d85-4098-82fc-97aa931568ce',
 	'905ace4b-0cc3-4309-984a-474530707016',
 	'9f02566f-3020-492f-9be5-b4a487b61ad4',
-];
+]
 
 export const candidateUserIds = [
 	'ecae3fd5-550a-47aa-81f8-8edaa779f295',
@@ -166,46 +166,46 @@ export const candidateUserIds = [
 	'471742a6-5bf1-43fc-b9e3-2ad73e521919',
 	'163f884a-a113-4ec0-96e6-903cdcebdc03',
 	'66b571bc-fdb3-45b7-a154-9b37a614ba77',
-];
+]
 
 async function main() {
 	for (let val of orgUserIds) {
-		const profile = await createUser(val);
-		const organization = await createOrganization(profile);
+		const profile = await createUser(val)
+		const organization = await createOrganization(profile)
 
-		const jobs = await createManyJobs(profile, organization, 5);
+		const jobs = await createManyJobs(profile, organization, 5)
 	}
 
-	const jobs = await prisma.job.findMany();
+	const jobs = await prisma.job.findMany()
 
 	for (let val of candidateUserIds) {
-		faker.seed(Math.random() * 100);
-		const profile = await createUser(val);
-		const resume = await createResume(profile);
-		let jobsToApply = [];
+		faker.seed(Math.random() * 100)
+		const profile = await createUser(val)
+		const resume = await createResume(profile)
+		let jobsToApply = []
 
 		for (let i = 0; i < 5; i++) {
-			let num = faker.datatype.number({ min: 0, max: 24 });
+			let num = faker.datatype.number({ min: 0, max: 24 })
 
 			while (jobsToApply.includes(num)) {
-				num = faker.datatype.number({ min: 0, max: 24 });
+				num = faker.datatype.number({ min: 0, max: 24 })
 			}
-			jobsToApply.push(num);
+			jobsToApply.push(num)
 		}
 
 		for (const jobIdx of jobsToApply) {
-			await createJobApplication(profile, resume, jobs[jobIdx]);
+			await createJobApplication(profile, resume, jobs[jobIdx])
 		}
-		jobsToApply = [];
+		jobsToApply = []
 	}
 }
 
 main()
 	.then(async () => {
-		await prisma.$disconnect();
+		await prisma.$disconnect()
 	})
 	.catch(async (e) => {
-		console.error(e);
-		await prisma.$disconnect();
-		process.exit(1);
-	});
+		console.error(e)
+		await prisma.$disconnect()
+		process.exit(1)
+	})

@@ -1,14 +1,11 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { Input } from '$lib/components';
+	import type { PageData } from './$types'
+	import { Input } from '$lib/components'
 
-	export let data: PageData;
+	export let data: PageData
 </script>
 
 <div class="flex flex-col items-center mx-auto w-full p-4">
-	<a href="/my/resume/create" class="btn bg-primary-500 btn-base text-white">
-		Create Your Nerd Resume
-	</a>
 	<form action="?/updateProfile" method="POST" class="flex flex-col space-y-2 w-full max-w-xl ">
 		<fieldset>
 			<Input id="firstName" label="First Name" type="text" value={data.profile?.firstName} />

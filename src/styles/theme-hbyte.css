@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+	/* =~= Theme Styles =~= */
+	--theme-border-base: 1px;
+	--theme-font-family-heading: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+	--theme-font-family-base: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+	--theme-font-color-base: var(--color-surface-900);
+	--theme-font-color-dark: var(--color-surface-50);
+	--theme-rounded-base: 9999px;
+	--theme-rounded-container: 8px;
+	/* =~= Theme Colors | Tailwind =~= */
+	/* primary | #0FBA81 */
+	--color-primary-50: 104 243 197;
+	--color-primary-100: 71 240 184;
+	--color-primary-200: 19 231 160;
+	--color-primary-300: 17 217 151;
+	--color-primary-400: 16 203 141;
+	--color-primary-500: 15 186 129;
+	--color-primary-600: 13 165 115;
+	--color-primary-700: 12 146 101;
+	--color-primary-800: 10 123 85;
+	--color-primary-900: 7 85 59;
+	/* accent | #4F46E5 */
+	--color-accent-50: 216 215 249;
+	--color-accent-100: 204 201 247;
+	--color-accent-200: 187 183 245;
+	--color-accent-300: 157 152 241;
+	--color-accent-400: 127 121 236;
+	--color-accent-500: 79 70 229;
+	--color-accent-600: 62 54 227;
+	--color-accent-700: 41 31 224;
+	--color-accent-800: 35 27 192;
+	--color-accent-900: 22 17 121;
+	/* tertiary | #EAB309 */
+	--color-tertiary-50: 250 218 122;
+	--color-tertiary-100: 250 215 113;
+	--color-tertiary-200: 248 207 83;
+	--color-tertiary-300: 247 197 49;
+	--color-tertiary-400: 246 187 9;
+	--color-tertiary-500: 234 179 9;
+	--color-tertiary-600: 211 160 8;
+	--color-tertiary-700: 187 142 7;
+	--color-tertiary-800: 157 119 6;
+	--color-tertiary-900: 113 86 4;
+	/* warning | #D41976 */
+	--color-warning-50: 249 205 227;
+	--color-warning-100: 247 191 219;
+	--color-warning-200: 244 164 204;
+	--color-warning-300: 241 136 189;
+	--color-warning-400: 236 91 163;
+	--color-warning-500: 212 25 118;
+	--color-warning-600: 192 23 107;
+	--color-warning-700: 173 20 97;
+	--color-warning-800: 137 16 77;
+	--color-warning-900: 96 11 54;
+	/* surface | #1C2237 */
+	--color-surface-50: 231 234 243;
+	--color-surface-100: 218 222 236;
+	--color-surface-200: 191 199 222;
+	--color-surface-300: 160 172 207;
+	--color-surface-400: 127 142 189;
+	--color-surface-500: 73 90 143;
+	--color-surface-600: 67 83 132;
+	--color-surface-700: 55 68 108;
+	--color-surface-800: 45 56 88;
+	--color-surface-900: 31 38 61;
+}
+
+/* Headings */
+[data-theme='skeleton'] h1,
+[data-theme='skeleton'] h2,
+[data-theme='skeleton'] h3,
+[data-theme='skeleton'] h4,
+[data-theme='skeleton'] h5,
+[data-theme='skeleton'] h6 {
+	font-weight: bold;
+}
+
+/* Applied to body with `<body data-theme="skeleton">` */
+/* Created with: https://csshero.org/mesher/ */
+[data-theme='skeleton'] {
+	/* prettier-ignore */
+	background-image:
+		radial-gradient(at 73% 84%, hsla(213,80%,69%,0.18) 0px, transparent 50%),
+		radial-gradient(at 16% 79%, hsla(268,79%,73%,0.18) 0px, transparent 50%),
+		radial-gradient(at 88% 64%, hsla(290,68%,62%,0.18) 0px, transparent 50%),
+		radial-gradient(at 67% 14%, hsla(167,87%,76%,0.18) 0px, transparent 50%),
+		radial-gradient(at 70% 75%, hsla(170,71%,68%,0.18) 0px, transparent 50%),
+		radial-gradient(at 98% 62%, hsla(244,77%,60%,0.18) 0px, transparent 50%),
+		radial-gradient(at 50% 19%, hsla(322,97%,63%,0.18) 0px, transparent 50%);
+}
+.dark [data-theme='skeleton'] {
+	/* prettier-ignore */
+	background-image:
+		radial-gradient(at 36% 0%, hsla(240,73%,56%,0.2) 0px, transparent 50%),
+		radial-gradient(at 71% 4%, hsla(330,78%,46%,0.18) 0px, transparent 50%);
+}

@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { zfd } from 'zod-form-data';
+import { z } from 'zod'
+import { zfd } from 'zod-form-data'
 
 export const registerUserSchema = z
 	.object({
@@ -25,21 +25,21 @@ export const registerUserSchema = z
 				code: z.ZodIssueCode.custom,
 				message: 'Password & Confirm password must match.',
 				path: ['password'],
-			});
+			})
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
 				message: 'Password & Confirm password must match.',
 				path: ['confirmPassword'],
-			});
+			})
 		}
-	});
+	})
 
 export const loginUserSchema = z.object({
 	email: z
 		.string({ required_error: 'Email is required.' })
 		.email({ message: 'Email must be a valid email.' }),
 	password: z.string({ required_error: 'Password is required' }),
-});
+})
 
 export const updateProfileSchema = z.object({
 	firstName: z
@@ -50,7 +50,7 @@ export const updateProfileSchema = z.object({
 		.string()
 		.max(64, { message: 'Last name must be less than 64 characters' })
 		.optional(),
-});
+})
 
 export const createOrganizationSchema = z.object({
 	name: z
@@ -60,7 +60,7 @@ export const createOrganizationSchema = z.object({
 	website: z
 		.string({ required_error: 'Website is required' })
 		.url({ message: 'Website must be a valid URL' }),
-});
+})
 
 export const postJobSchema = zfd.formData({
 	title: z
@@ -78,7 +78,7 @@ export const postJobSchema = zfd.formData({
 	),
 	description: z.string({ required_error: 'A job description is required.' }),
 	jobLocType: z.enum(['REMOTE', 'HYBRID', 'OFFICE']),
-});
+})
 
 export const createResumeSchema = z.object({
 	firstName: z
@@ -88,7 +88,7 @@ export const createResumeSchema = z.object({
 		.string()
 		.max(64, { message: 'Last name must be less than 64 characters' }),
 	location: z.string(),
-});
+})
 
 export const createEducationSchema = zfd.formData({
 	educationLevel: z
@@ -106,21 +106,21 @@ export const createEducationSchema = zfd.formData({
 		.string()
 		.transform((val) => {
 			if (val === '') {
-				return null;
+				return null
 			}
-			return new Date(val);
+			return new Date(val)
 		})
 		.optional(),
 	enrolledTo: z
 		.string()
 		.transform((val) => {
 			if (val === '') {
-				return null;
+				return null
 			}
-			return new Date(val);
+			return new Date(val)
 		})
 		.optional(),
-});
+})
 
 export const createExperienceSchema = zfd.formData({
 	jobTitle: z
@@ -133,26 +133,26 @@ export const createExperienceSchema = zfd.formData({
 		.checkbox()
 		.transform((val) => Boolean(val))
 		.optional(),
-	employedFrom: z
+	startDate: z
 		.string()
 		.transform((val) => {
 			if (val === '') {
-				return null;
+				return null
 			}
-			return new Date(val);
+			return new Date(val)
 		})
 		.optional(),
-	employedTo: z
+	endDate: z
 		.string()
 		.transform((val) => {
 			if (val === '') {
-				return null;
+				return null
 			}
-			return new Date(val);
+			return new Date(val)
 		})
 		.optional(),
 	description: z.string().optional(),
-});
+})
 
 export const createSkillSchema = z.object({
 	name: z
@@ -161,4 +161,4 @@ export const createSkillSchema = z.object({
 		.max(64, {
 			message: 'Skill name must be less than 65 characters',
 		}),
-});
+})
