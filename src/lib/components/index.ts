@@ -13,10 +13,12 @@ import CandidatesDataTable from './CandidatesDataTable.svelte'
 import JobPostingDataTable from './JobPostingDataTable.svelte'
 import ResumeBuilder from './ResumeBuilder.svelte'
 import ExperienceForm from './resume/ExperienceForm.svelte'
+import EducationForm from './resume/EducationForm.svelte'
 
 export {
 	Checkbox,
 	CandidatesDataTable,
+	EducationForm,
 	EmployerJob,
 	EmployerJobTable,
 	ExperienceForm,

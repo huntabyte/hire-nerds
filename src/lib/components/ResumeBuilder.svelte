@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Resume, ResumeEducation, ResumeExperience, ResumeSkills } from '@prisma/client'
 	import { Divider } from '@skeletonlabs/skeleton'
-	import { ExperienceForm } from '$lib/components'
+	import { ExperienceForm, EducationForm } from '$lib/components'
 
 	interface IResume extends Resume {
 		experience: ResumeExperience[]
@@ -11,6 +11,7 @@
 
 	export let resume: IResume
 	let showExperienceForm = false
+	let showEducationForm = false
 
 	const toggleExperienceForm = () => {
 		showExperienceForm = !showExperienceForm
@@ -69,21 +70,32 @@
 	</div>
 	<div class="flex flex-col w-full">
 		<div class="flex justify-between items-center">
-			<h4 class="font-bold">Education</h4>
-			<button class="btn btn-sm btn-filled-primary">Add</button>
+			<h4 class="font-medium">Education</h4>
+			<button class="btn btn-sm btn-filled-primary" on:click={() => (showEducationForm = true)}
+				>Add</button
+			>
 		</div>
 		<span class="py-3">
 			<Divider borderWidth="border-t" borderStye="solid" borderColor="border-primary-500" />
 		</span>
+		{#if showEducationForm}
+			<EducationForm bind:showEducationForm />
+		{/if}
 		{#each resume.education as education}
-			<div class="flex flex-col gap-2">
+			<div class="flex flex-col pb-6">
 				<div class="flex justify-between">
-					<h5>{education.educationLevel}</h5>
+					<h4 class="font-semibold">{education.educationLevel} - {education.field}</h4>
 					<p>
-						{education.enrolledFrom.getUTCFullYear()} - {education.enrolledTo.getUTCFullYear()}
+						{education.enrolledFrom.getUTCFullYear()} - {education?.enrolledTo
+							? education.enrolledTo.getUTCFullYear()
+							: 'Present'}
 					</p>
 				</div>
-				<p>{education.school}, {education.location}</p>
+				<p>
+					<em>
+						{education.school}, {education.location}
+					</em>
+				</p>
 			</div>
 		{/each}
 	</div>

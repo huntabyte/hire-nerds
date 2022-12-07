@@ -95,9 +95,9 @@ export const createEducationSchema = zfd.formData({
 		.string({ required_error: 'Education level is required' })
 		.min(1, { message: 'Education level is required' })
 		.max(64, { message: 'Education level must be less than 64 characters' }),
-	field: z.string().optional(),
-	school: z.string().optional(),
-	location: z.string().optional(),
+	field: z.string(),
+	school: z.string(),
+	location: z.string(),
 	currentlyEnrolled: zfd
 		.checkbox()
 		.transform((val) => Boolean(val))

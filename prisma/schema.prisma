@@ -47,16 +47,16 @@ model Resume {
 }
 
 model ResumeEducation {
-    id                String   @id @default(uuid())
-    resume            Resume   @relation(fields: [resumeId], references: [id])
-    resumeId          String   @map("resume_id")
-    educationLevel    String   @map("education_level")
-    field             String   @map("field")
-    school            String   @map("school")
-    location          String   @map("location")
-    currentlyEnrolled Boolean  @default(false) @map("currently_enrolled")
-    enrolledFrom      DateTime @map("enrolled_from")
-    enrolledTo        DateTime @map("enrolled_to")
+    id                String    @id @default(uuid())
+    resume            Resume    @relation(fields: [resumeId], references: [id])
+    resumeId          String    @map("resume_id")
+    educationLevel    String    @map("education_level")
+    field             String    @map("field")
+    school            String    @map("school")
+    location          String    @map("location")
+    currentlyEnrolled Boolean   @default(false) @map("currently_enrolled")
+    enrolledFrom      DateTime? @map("enrolled_from")
+    enrolledTo        DateTime? @map("enrolled_to")
 
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @updatedAt @map("updated_at")
