@@ -144,7 +144,7 @@ enum JobLocType {
     OFFICE
 }
 
-enum CompensationType {
+enum JobCompType {
     SALARY
     HOURLY
 }
@@ -156,16 +156,16 @@ enum JobStatus {
 }
 
 model Job {
-    id            String           @id @default(uuid())
+    id            String      @id @default(uuid())
     title         String
     type          JobType
     location      String
-    compType      CompensationType @map("comp_type")
-    payScaleBegin Int              @map("pay_scale_begin")
-    payScaleEnd   Int              @map("pay_scale_end")
+    compType      JobCompType @map("comp_type")
+    payScaleBegin Int         @map("pay_scale_begin")
+    payScaleEnd   Int         @map("pay_scale_end")
     description   String
-    jobLocType    JobLocType       @map("job_location_type")
-    status        JobStatus        @default(OPEN)
+    jobLocType    JobLocType  @map("job_location_type")
+    status        JobStatus   @default(OPEN)
 
     organization   Organization @relation(fields: [organizationId], references: [id])
     organizationId String       @map("organization_id")

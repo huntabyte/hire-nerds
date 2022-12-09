@@ -8,5 +8,6 @@
 </script>
 
 <div class="p-4">
+	<a href="/employers/jobs/post" class="btn btn-filled-primary">New</a>
 	<JobPostingDataTable sourceData={jobs} />
 </div>

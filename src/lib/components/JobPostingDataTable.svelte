@@ -83,9 +83,7 @@
 							<td class="md:!whitespace-normal capitalize">{row.title}</td>
 							<td class="md:!whitespace-normal capitalize">{row.location}</td>
 							<td class="md:!whitespace-normal capitalize">{jobType[`${row.type}`]}</td>
-							<td class="md:!whitespace-normal capitalize"
-								>{nf.formatRange(row.payScaleBegin, row.payScaleEnd)}
-							</td>
+							<td class="md:!whitespace-normal capitalize">{nf.formatRange(1000, 5000)} </td>
 							<td class="md:!whitespace-normal capitalize">{jobCompType[`${row.compType}`]}</td>
 							<td class="md:!whitespace-normal capitalize">{jobLocType[`${row.jobLocType}`]}</td>
 							<td class="md:!whitespace-normal capitalize">

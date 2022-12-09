@@ -1,3 +1,4 @@
+import { JobType, JobCompType, JobLocType } from '@prisma/client'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 
@@ -67,9 +68,9 @@ export const postJobSchema = zfd.formData({
 		.string({ required_error: 'Title is required' })
 		.min(1, { message: 'Title is required' })
 		.max(64, { message: 'Job Title must be less than 64 characters' }),
-	type: z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT']),
+	type: z.nativeEnum(JobType),
 	location: z.string({ required_error: 'Location is required' }),
-	compType: z.enum(['SALARY', 'HOURLY']),
+	compType: z.nativeEnum(JobCompType),
 	payScaleBegin: zfd.numeric(
 		z.number({ required_error: 'Starting pay scale is required' }),
 	),
@@ -77,7 +78,7 @@ export const postJobSchema = zfd.formData({
 		z.number({ required_error: 'Ending pay scale is required' }),
 	),
 	description: z.string({ required_error: 'A job description is required.' }),
-	jobLocType: z.enum(['REMOTE', 'HYBRID', 'OFFICE']),
+	jobLocType: z.nativeEnum(JobLocType),
 })
 
 export const createResumeSchema = z.object({
