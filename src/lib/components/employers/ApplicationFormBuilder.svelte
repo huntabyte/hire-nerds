@@ -3,6 +3,7 @@
 	import { quadIn, quadOut } from 'svelte/easing'
 	import { QuestionMultipleChoice, QuestionCustomResponse } from '$lib/components'
 	import type { IQuestion } from '$lib/types'
+	import { questionType } from '$lib/constants'
 
 	let questions: IQuestion[] = [
 		{
@@ -64,16 +65,16 @@
 					<button
 						type="button"
 						class="btn btn-ghost-primary "
-						on:click={() => (question.type = 'multipleChoice')}>Multiple Choice</button
+						on:click={() => (question.type = questionType.MULTIPLE_CHOICE)}>Multiple Choice</button
 					>
 					<button
 						type="submit"
 						class="btn btn-ghost-primary"
-						on:click={() => (question.type = 'customResponse')}>Custom Response</button
+						on:click={() => (question.type = questionType.SHORT_ANSWER)}>Custom Response</button
 					>
 				</span>
 			{/if}
-			{#if question.type === 'multipleChoice'}
+			{#if question.type === questionType.MULTIPLE_CHOICE}
 				<span in:slide={inTransitionParams}>
 					<button
 						type="button"
@@ -85,7 +86,7 @@
 				</span>
 			{/if}
 
-			{#if question.type === 'customResponse'}
+			{#if question.type === questionType.SHORT_ANSWER}
 				<span in:slide={inTransitionParams}>
 					<button
 						type="button"
