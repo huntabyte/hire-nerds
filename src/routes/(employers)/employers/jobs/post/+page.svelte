@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Input, RadioGroup, Textarea } from '$lib/components'
+	import { Input, RadioGroup, Textarea, ApplicationFormBuilder } from '$lib/components'
 	import type { IInput } from '$lib/types'
 	import type { PageData, ActionData } from './$types'
 
@@ -77,6 +77,7 @@
 		<RadioGroup label="Compensation Type" inputList={compTypeInputs} />
 		<RadioGroup label="Location Type" inputList={jobLocTypeInputs} />
 	</fieldset>
+	<ApplicationFormBuilder />
 
 	<div>
 		<button type="submit" class="btn bg-primary-500 btn-base text-white">

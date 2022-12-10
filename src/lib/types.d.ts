@@ -13,3 +13,18 @@ export interface IInput
 export interface IJob extends Job {
 	applications: JobApplication[]
 }
+
+export interface IQuestion {
+	id: string
+	question: MultipleChoice | CustomResponse | undefined
+	type: string
+}
+
+export interface MultipleChoice {
+	title: string
+	choices: string[]
+}
+
+export interface CustomResponse {
+	title: string
+}
