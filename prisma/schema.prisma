@@ -150,6 +150,7 @@ enum JobCompType {
 }
 
 enum JobStatus {
+    DRAFT
     OPEN
     PAUSED
     CLOSED
@@ -165,7 +166,9 @@ model Job {
     payScaleEnd   Int         @map("pay_scale_end")
     description   String
     jobLocType    JobLocType  @map("job_location_type")
-    status        JobStatus   @default(OPEN)
+    status        JobStatus   @default(DRAFT)
+
+    customQuestions Json[] @map("custom_questions")
 
     organization   Organization @relation(fields: [organizationId], references: [id])
     organizationId String       @map("organization_id")

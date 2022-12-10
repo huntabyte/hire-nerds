@@ -1,6 +1,7 @@
 import { JobType, JobCompType, JobLocType } from '@prisma/client'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
+import { questionType } from './constants'
 
 export const registerUserSchema = z
 	.object({
@@ -163,3 +164,28 @@ export const createSkillSchema = z.object({
 			message: 'Skill name must be less than 65 characters',
 		}),
 })
+
+export const answerOptionSchema = z.object({
+	id: z.string({ required_error: 'Option ID is required' }),
+	value: z.string({ required_error: 'Option value is required' }),
+})
+
+export const multipleChoiceQuestionSchema = z.object({
+	title: z.string({ required_error: 'Question title is required' }),
+	options: z.array(answerOptionSchema),
+})
+
+export const customResponseQuestionSchema = multipleChoiceQuestionSchema.omit({
+	options: true,
+})
+
+export const createApplicationQuestionsSchema = z.array(
+	z.object({
+		id: z.string({ required_error: 'Question ID is required' }),
+		question: z.union([
+			multipleChoiceQuestionSchema,
+			customResponseQuestionSchema,
+		]),
+		type: z.nativeEnum(questionType),
+	}),
+)

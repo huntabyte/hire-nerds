@@ -1,43 +1,39 @@
 <script lang="ts">
-	import type { MultipleChoice } from '$lib/types'
+	import type { MultipleChoice, AnswerOption } from '$lib/types'
 
 	export let question: MultipleChoice
-	type Choice = {
-		id: string
-		choice: string
-	}
 
-	let choices: Choice[] = [
+	question.options = [
 		{
 			id: crypto.randomUUID(),
-			choice: ''
+			value: ''
 		}
 	]
 
-	let numChoices: number
+	let numOptions: number
 	let tooMany = false
 
-	const handleAddChoice = () => {
-		if (numChoices >= 8) {
+	const handleAddOption = () => {
+		if (numOptions >= 8) {
 			tooMany = true
 			return
 		}
-		numChoices = numChoices + 1
+		numOptions = numOptions + 1
 
-		choices = [
-			...choices,
+		question.options = [
+			...question.options,
 			{
 				id: crypto.randomUUID(),
-				choice: ''
+				value: ''
 			}
 		]
 	}
 
-	const handleDeleteChoice = (id: string) => {
-		choices = choices.filter((choice) => choice.id !== id)
+	const handleDeleteOption = (id: string) => {
+		question.options = question.options.filter((option) => option.id !== id)
 	}
 
-	$: numChoices = choices.length
+	$: numOptions = question.options.length
 </script>
 
 <div class="w-full">
@@ -48,26 +44,26 @@
 </div>
 <div class="w-full">
 	<label for="">
-		<span> Choices </span>
+		<span> Answers </span>
 	</label>
 	<div class="w-full flex flex-col gap-2">
-		{#each choices as choice}
+		{#each question.options as option}
 			<div class="flex gap-2">
-				<input type="text" bind:value={choice.choice} />
+				<input type="text" bind:value={option.value} />
 				<button
 					type="button"
 					class="btn-icon btn-ghost-warning"
-					on:click={() => handleDeleteChoice(choice.id)}>-</button
+					on:click={() => handleDeleteOption(option.id)}>-</button
 				>
 			</div>
 		{/each}
 		{#if tooMany}
-			<span class="text-red-600">Only 7 choices are allowed</span>
+			<span class="text-red-600">Only 7 answers are allowed</span>
 		{/if}
 		<button
 			type="button"
 			class="btn-icon btn-ghost-primary"
-			on:click={handleAddChoice}
+			on:click={handleAddOption}
 			disabled={tooMany}>+</button
 		>
 	</div>

@@ -15,7 +15,7 @@ export const jobLocType = {
 	HYBRID: 'Hybrid',
 }
 
-export const questionType = {
-	MULTIPLE_CHOICE: 'MULTIPLE_CHOICE',
-	SHORT_ANSWER: 'SHORT_ANSWER',
+export enum questionType {
+	MULTIPLE_CHOICE = 'MULTIPLE_CHOICE',
+	SHORT_ANSWER = 'SHORT_ANSWER',
 }

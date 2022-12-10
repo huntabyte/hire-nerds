@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import { slide } from 'svelte/transition'
 	import { quadIn, quadOut } from 'svelte/easing'
 	import { QuestionMultipleChoice, QuestionCustomResponse } from '$lib/components'
 	import type { IQuestion } from '$lib/types'
 	import { questionType } from '$lib/constants'
+	import { goto } from '$app/navigation'
+	import toast from 'svelte-french-toast'
 
 	let questions: IQuestion[] = [
 		{
@@ -53,7 +56,24 @@
 		easing: quadOut
 	}
 
-	$: console.log(questions)
+	const handleSubmitQuestions = async () => {
+		const res = await fetch(`/employers/jobs/${$page.data.job.id}/questions`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(questions)
+		})
+
+		console.log(res)
+
+		if (res.ok) {
+			toast.success('Questions added!')
+			goto(`/employers/jobs`)
+		} else {
+			toast.error('Something went wrong. Please try again.')
+		}
+	}
 </script>
 
 <div class="w-full flex flex-col gap-4">
@@ -103,6 +123,8 @@
 		<button type="button" class="btn btn-filled-primary w-full" on:click={() => handleAddQuestion()}
 			>Add Another Question</button
 		>
-		<button type="button" class="btn btn-ghost-primary w-full">Finish</button>
+		<button type="button" class="btn btn-ghost-primary w-full" on:click={handleSubmitQuestions}
+			>Finish</button
+		>
 	</div>
 </div>

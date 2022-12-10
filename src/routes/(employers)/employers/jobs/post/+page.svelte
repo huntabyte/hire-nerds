@@ -3,9 +3,6 @@
 	import type { IInput } from '$lib/types'
 	import type { PageData, ActionData } from './$types'
 
-	export let data: PageData
-	export let form: ActionData
-
 	let jobTypeInputs: IInput[] = [
 		{
 			name: 'jobType',
@@ -77,11 +74,8 @@
 		<RadioGroup label="Compensation Type" inputList={compTypeInputs} />
 		<RadioGroup label="Location Type" inputList={jobLocTypeInputs} />
 	</fieldset>
-	<ApplicationFormBuilder />
 
 	<div>
-		<button type="submit" class="btn bg-primary-500 btn-base text-white">
-			Update Job Posting
-		</button>
+		<button type="submit" class="btn bg-primary-500 btn-base text-white"> Continue </button>
 	</div>
 </form>

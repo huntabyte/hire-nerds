@@ -22,9 +22,14 @@ export interface IQuestion {
 
 export interface MultipleChoice {
 	title: string
-	choices: string[]
+	options: AnswerOption[]
 }
 
 export interface CustomResponse {
 	title: string
+}
+
+export interface AnswerOption {
+	id: string
+	value: string
 }
