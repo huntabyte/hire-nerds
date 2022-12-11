@@ -83,7 +83,9 @@
 							<td class="md:!whitespace-normal capitalize">{row.title}</td>
 							<td class="md:!whitespace-normal capitalize">{row.location}</td>
 							<td class="md:!whitespace-normal capitalize">{jobType[`${row.type}`]}</td>
-							<td class="md:!whitespace-normal capitalize">{nf.formatRange(1000, 5000)} </td>
+							<td class="md:!whitespace-normal capitalize"
+								>{nf.formatRange(row.payScaleBegin, row.payScaleEnd)}
+							</td>
 							<td class="md:!whitespace-normal capitalize">{jobCompType[`${row.compType}`]}</td>
 							<td class="md:!whitespace-normal capitalize">{jobLocType[`${row.jobLocType}`]}</td>
 							<td class="md:!whitespace-normal capitalize">
@@ -93,12 +95,18 @@
 							</td>
 							<td class="md:!whitespace-normal">{formatDistanceToNowStrict(row.createdAt)} ago</td>
 							<td class="md:!whitespace-normal capitalize">
-								<span class="badge bg-primary-500">{row.status}</span>
+								{#if row.status === 'DRAFT'}
+									<span class="badge bg-tertiary-500">{row.status}</span>
+								{:else if row.status === 'PUBLISHED'}
+									<span class="badge bg-primary-500">{row.status}</span>
+								{:else if row.status === 'CLOSED'}
+									<span class="badge bg-warning-500">{row.status}</span>
+								{:else if row.status === 'PAUSED'}
+									<span class="badge bg-surface-800">{row.status}</span>
+								{/if}
 							</td>
 							<td role="gridcell" aria-colindex={6} tabindex="0" class="table-cell-fit">
-								<a href="/employers/jobs/{row.id}" class="btn btn-ghost-surface btn-sm">
-									View Job
-								</a>
+								<a href="/employers/jobs/{row.id}" class="btn btn-ghost-surface btn-sm"> Manage </a>
 							</td>
 						</tr>
 					{/each}

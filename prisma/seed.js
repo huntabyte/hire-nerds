@@ -65,7 +65,11 @@ const createManyJobs = async (profile, organization, numJobs) => {
 		data.push({
 			title: faker.name.jobTitle(),
 			location: faker.address.city(),
-			type: faker.helpers.arrayElement(['FULL_TIME', 'PART_TIME', 'CONTRACT']),
+			jobType: faker.helpers.arrayElement([
+				'FULL_TIME',
+				'PART_TIME',
+				'CONTRACT',
+			]),
 			compType,
 			payScaleBegin,
 			payScaleEnd,

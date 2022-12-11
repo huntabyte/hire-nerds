@@ -69,7 +69,7 @@ export const postJobSchema = zfd.formData({
 		.string({ required_error: 'Title is required' })
 		.min(1, { message: 'Title is required' })
 		.max(64, { message: 'Job Title must be less than 64 characters' }),
-	type: z.nativeEnum(JobType),
+	jobType: z.nativeEnum(JobType),
 	location: z.string({ required_error: 'Location is required' }),
 	compType: z.nativeEnum(JobCompType),
 	payScaleBegin: zfd.numeric(
@@ -188,4 +188,17 @@ export const createApplicationQuestionsSchema = z.array(
 		]),
 		type: z.nativeEnum(questionType),
 	}),
+)
+
+export const customQuestionsSchema = z.array(
+	z
+		.object({
+			id: z.string({ required_error: 'Question ID is required' }),
+			question: z.union([
+				multipleChoiceQuestionSchema,
+				customResponseQuestionSchema,
+			]),
+			type: z.nativeEnum(questionType),
+		})
+		.optional(),
 )
