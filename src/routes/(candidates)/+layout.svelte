@@ -4,7 +4,6 @@
 	import type { NavLink } from '$lib/types'
 
 	import { Navigation } from '$lib/components'
-	import { enhance } from '$app/forms'
 	const navItems: NavLink[] = [
 		{
 			title: 'Home',
@@ -96,7 +95,7 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
-	<div class="p-4">
+	<div class="container mx-auto p-4">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter" />

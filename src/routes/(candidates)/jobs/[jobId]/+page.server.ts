@@ -2,55 +2,6 @@ import { prisma } from '$lib/server/prisma'
 import { error, redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 
-export const load: PageServerLoad = ({ params, locals }) => {
-	const getJob = async (jobId: string) => {
-		const job = await prisma.job.findUnique({
-			where: {
-				id: jobId,
-			},
-		})
-		return job
-	}
-
-	const getApplicationCount = async (jobId: string) => {
-		const count = await prisma.jobApplication.count({
-			where: {
-				jobId: jobId,
-			},
-		})
-		return count
-	}
-
-	const getApplicationStatus = async (userId: string, jobId: string) => {
-		const hasApplied = await prisma.jobApplication.findFirst({
-			where: {
-				jobId: jobId,
-				userId: userId,
-			},
-		})
-
-		if (hasApplied) {
-			return true
-		} else {
-			return false
-		}
-	}
-
-	if (!locals.session?.user) {
-		return {
-			job: getJob(params.jobId),
-			applicationCount: getApplicationCount(params.jobId),
-			hasApplied: false,
-		}
-	}
-
-	return {
-		job: getJob(params.jobId),
-		applicationCount: getApplicationCount(params.jobId),
-		hasApplied: getApplicationStatus(locals.session.user.id, params.jobId),
-	}
-}
-
 export const actions: Actions = {
 	apply: async ({ locals, params }) => {
 		if (!locals.session?.user) {

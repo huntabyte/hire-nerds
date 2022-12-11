@@ -16,20 +16,24 @@ export interface IJob extends Job {
 
 export interface IQuestion {
 	id: string
-	question: MultipleChoice | CustomResponse | undefined
+	question: Question
 	type: string
 }
 
-export interface MultipleChoice {
+export type Question =
+	| { id: string; type: 'MULTIPLE_CHOICE'; question: MultipleChoice }
+	| { id: string; type: 'CUSTOM_RESPONSE'; question: CustomResponse }
+
+type MultipleChoice = {
 	title: string
 	options: AnswerOption[]
 }
 
-export interface CustomResponse {
+type CustomResponse = {
 	title: string
 }
 
-export interface AnswerOption {
+type AnswerOption = {
 	id: string
 	value: string
 }

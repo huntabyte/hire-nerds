@@ -43,3 +43,7 @@ export const validateData = async <T extends z.ZodTypeAny>(
 		}
 	}
 }
+
+export const serializeJson = <T>(json: string): T => {
+	return JSON.parse(json)
+}

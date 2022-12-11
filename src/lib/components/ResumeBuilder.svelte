@@ -50,7 +50,8 @@
 				<div class="flex justify-between items-center">
 					<h4 class="font-semibold">{experience.jobTitle}</h4>
 					<p>
-						{experience.startDate?.getUTCFullYear()} - {experience.endDate?.getUTCFullYear()}
+						{experience.startDate?.getUTCFullYear()} - {experience.endDate?.getUTCFullYear() ??
+							'Present'}
 					</p>
 				</div>
 				<p>
@@ -60,9 +61,7 @@
 				</p>
 				<p class="pt-2">
 					<span class="opacity-90">
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, illo asperiores ut
-						rerum reprehenderit natus deserunt commodi repellat praesentium ad quam voluptatum
-						itaque molestiae, quo vero similique aliquam. Quos, sunt.
+						{experience.description}
 					</span>
 				</p>
 			</div>

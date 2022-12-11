@@ -48,6 +48,6 @@ export const actions: Actions = {
 			console.log('Error: ', err)
 			throw error(500, 'Something went wrong creating a resume.')
 		}
-		throw redirect(303, '/my/resume/education')
+		throw redirect(303, '/my/resume')
 	},
 }

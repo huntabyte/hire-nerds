@@ -28,9 +28,7 @@
 
 			{#if session}
 				{#if !hasApplied}
-					<form action="?/apply" method="POST" use:enhance={submitApplication}>
-						<button type="submit" class="btn btn-filled-primary">Apply</button>
-					</form>
+					<a href="/jobs/{job.id}/apply" class="btn btn-filled-primary">Apply</a>
 				{:else}
 					<button disabled class="btn btn-ghost-surface">Applied✅</button>
 				{/if}

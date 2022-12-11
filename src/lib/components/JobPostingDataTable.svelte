@@ -15,6 +15,7 @@
 	import { writable, type Writable } from 'svelte/store'
 	import { jobType, jobCompType, jobLocType } from '$lib/constants'
 	import { formatDistanceToNowStrict } from 'date-fns'
+	import type { IJob } from '$lib/types'
 
 	const nf = new Intl.NumberFormat('en-US', {
 		style: 'currency',

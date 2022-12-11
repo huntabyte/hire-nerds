@@ -101,7 +101,9 @@
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
 	<!-- Router Slot -->
-	<slot />
+	<div class="container mx-auto p-4">
+		<slot />
+	</div>
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="pageFooter" />
 	<svelte:fragment slot="footer" />
