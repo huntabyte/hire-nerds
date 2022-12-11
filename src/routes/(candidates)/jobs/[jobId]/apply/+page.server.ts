@@ -1,13 +1,43 @@
 import { prisma } from '$lib/server/prisma'
 import { error, invalid, redirect } from '@sveltejs/kit'
 import { questionType } from '$lib/constants'
-import type { Actions } from './$types'
+import type { Actions, PageServerLoad } from './$types'
 import type { Question } from '$lib/types'
+
+export const load: PageServerLoad = async ({ locals }) => {
+	if (!locals.session?.user) {
+		throw redirect(303, '/login')
+	}
+
+	const resume = await prisma.resume.findFirst({
+		where: {
+			userId: locals.session.user.id,
+		},
+	})
+
+	if (!resume) {
+		throw redirect(303, '/my/resume/create')
+	}
+}
 
 export const actions: Actions = {
 	createApplication: async ({ params, request, locals }) => {
 		if (!locals.session?.user) {
 			throw redirect(303, '/login')
+		}
+
+		if (!locals.session?.user) {
+			throw redirect(303, '/login')
+		}
+
+		const resume = await prisma.resume.findFirst({
+			where: {
+				userId: locals.session.user.id,
+			},
+		})
+
+		if (!resume) {
+			throw redirect(303, '/my/resume/create')
 		}
 
 		const { jobId } = params
@@ -49,16 +79,6 @@ export const actions: Actions = {
 				answers,
 				errors,
 			})
-		}
-
-		const resume = await prisma.resume.findFirst({
-			where: {
-				userId: locals.session.user.id,
-			},
-		})
-
-		if (!resume) {
-			throw redirect(303, '/resume/create')
 		}
 
 		try {

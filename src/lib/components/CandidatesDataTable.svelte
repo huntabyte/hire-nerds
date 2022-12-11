@@ -74,7 +74,12 @@
 								<span class="badge bg-primary-500">{row.status}</span>
 							</td>
 							<td role="gridcell" aria-colindex={6} tabindex="0" class="table-cell-fit">
-								<a href="#" class="btn btn-ghost-surface btn-sm"> View Application </a>
+								<a
+									href="/employers/jobs/{row.jobId}/applications/{row.id}"
+									class="btn btn-ghost-surface btn-sm"
+								>
+									View Application
+								</a>
 							</td>
 						</tr>
 					{/each}

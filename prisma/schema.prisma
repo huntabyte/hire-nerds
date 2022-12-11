@@ -133,6 +133,7 @@ model Job {
 }
 
 model JobApplication {
+    id              String               @unique @default(uuid())
     jobId           String               @map("job_id")
     userId          String               @map("user_id")
     status          JobApplicationStatus @default(APPLIED)
@@ -144,7 +145,6 @@ model JobApplication {
     user            Profile              @relation(fields: [userId], references: [id])
     questionAnswers Json[]               @map("question_answers")
 
-    @@id([userId, jobId])
     @@map("job_applications")
 }
 

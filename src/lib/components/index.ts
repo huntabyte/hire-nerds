@@ -18,8 +18,11 @@ import ApplicationFormBuilder from './employers/ApplicationFormBuilder.svelte'
 import Question from './employers/Question.svelte'
 import QuestionMultipleChoice from './employers/QuestionMultipleChoice.svelte'
 import QuestionCustomResponse from './employers/QuestionCustomResponse.svelte'
+import Resume from './Resume.svelte'
+import ApplicationAnswers from './ApplicationAnswers.svelte'
 
 export {
+	ApplicationAnswers,
 	ApplicationFormBuilder,
 	Checkbox,
 	CandidatesDataTable,
@@ -38,6 +41,7 @@ export {
 	Radio,
 	RadioItem,
 	RadioGroup,
+	Resume,
 	ResumeBuilder,
 	Textarea,
 }
