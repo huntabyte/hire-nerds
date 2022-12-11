@@ -3,12 +3,14 @@
 
 	export let question: MultipleChoice
 
-	question.options = [
-		{
-			id: crypto.randomUUID(),
-			value: ''
-		}
-	]
+	if (!question?.options) {
+		question.options = [
+			{
+				id: crypto.randomUUID(),
+				value: ''
+			}
+		]
+	}
 
 	let numOptions: number
 	let tooMany = false

@@ -86,7 +86,7 @@
 							{/each}
 
 							<li>
-								<form action="/logout" method="POST" use:enhance>
+								<form action="/logout" method="POST">
 									<button type="submit" class="option w-full">Sign Out</button>
 								</form>
 							</li>

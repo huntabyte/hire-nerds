@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { CustomResponse } from '$lib/types'
-
-	export let question: CustomResponse
+	export let question: any
 </script>
 
 <div class="w-full">

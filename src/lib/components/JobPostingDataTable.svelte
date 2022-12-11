@@ -97,7 +97,7 @@
 							<td class="md:!whitespace-normal capitalize">
 								{#if row.status === 'DRAFT'}
 									<span class="badge bg-tertiary-500">{row.status}</span>
-								{:else if row.status === 'PUBLISHED'}
+								{:else if row.status === 'OPEN'}
 									<span class="badge bg-primary-500">{row.status}</span>
 								{:else if row.status === 'CLOSED'}
 									<span class="badge bg-warning-500">{row.status}</span>

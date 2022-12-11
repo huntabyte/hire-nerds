@@ -8,12 +8,12 @@
 	export let job: JobOrg
 </script>
 
-<div class="card bg-base-300 shadow-xl">
-	<div class="card-body">
+<div class="card p-4">
+	<div class="card-heading">
 		<h2 class="card-title">{job.title} - {job.organization.name}</h2>
+	</div>
+	<div class="card-body">
 		<p>{job.description}</p>
-		<div class="card-actions justify-end">
-			<a href="/jobs/{job.id}" class="btn btn-primary">View Job</a>
-		</div>
+		<a href="/jobs/{job.id}" class="btn btn-filled-primary">View Job</a>
 	</div>
 </div>

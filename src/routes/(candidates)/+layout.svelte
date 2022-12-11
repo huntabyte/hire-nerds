@@ -85,7 +85,7 @@
 							{/each}
 
 							<li>
-								<form action="/logout" method="POST" use:enhance>
+								<form action="/logout" method="POST">
 									<button type="submit" class="option w-full">Sign Out</button>
 								</form>
 							</li>
@@ -96,7 +96,9 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
-	<slot />
+	<div class="p-4">
+		<slot />
+	</div>
 	<svelte:fragment slot="pageFooter" />
 	<svelte:fragment slot="footer" />
 </AppShell>

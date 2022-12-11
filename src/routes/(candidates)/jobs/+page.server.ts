@@ -4,6 +4,9 @@ import type { PageServerLoad } from './$types'
 export const load: PageServerLoad = async ({ locals }) => {
 	const getJobs = async () => {
 		const jobs = await prisma.job.findMany({
+			where: {
+				status: 'OPEN',
+			},
 			include: {
 				organization: true,
 			},

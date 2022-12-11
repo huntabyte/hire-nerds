@@ -29,16 +29,16 @@
 			{#if session}
 				{#if !hasApplied}
 					<form action="?/apply" method="POST" use:enhance={submitApplication}>
-						<button type="submit" class="btn btn-primary">Apply</button>
+						<button type="submit" class="btn btn-filled-primary">Apply</button>
 					</form>
 				{:else}
-					<button disabled class="btn btn-success">Applied✅</button>
+					<button disabled class="btn btn-ghost-surface">Applied✅</button>
 				{/if}
 			{/if}
 		</div>
 		<p>{job.location}</p>
 		<p>{job.jobLocType}</p>
-		<p>{job.type}</p>
+		<p>{job.jobType}</p>
 		<p>{job.compType}</p>
 		<p>${job.payScaleBegin} - ${job.payScaleEnd}</p>
 		<p>{job.description}</p>

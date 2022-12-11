@@ -43,4 +43,22 @@ export const actions: Actions = {
 			}
 		}
 	},
+	publishJob: async ({ params }) => {
+		try {
+			await prisma.job.update({
+				where: {
+					id: params.jobId,
+				},
+				data: {
+					status: 'OPEN',
+				},
+			})
+			return {
+				success: true,
+			}
+		} catch (err) {
+			console.log('Error: ', err)
+			throw error(500, 'Something went wrong publishing the job.')
+		}
+	},
 }
