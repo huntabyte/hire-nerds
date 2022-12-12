@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
-	import { Navbar } from '$lib/components'
 	import Navigation from '$lib/components/navigation/Navigation.svelte'
 	import { storeDrawer } from '$lib/stores/ui'
 	import type { NavLink } from '$lib/types'
@@ -61,7 +59,7 @@
 						</span>
 					</button>
 					<a href="/employers">
-						<strong class="text-xl uppercase">Hire Nerds</strong>
+						<span class="text-xl font-medium uppercase">Hire Nerds</span>
 					</a>
 				</div>
 			</svelte:fragment>
@@ -101,7 +99,7 @@
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
 	<!-- Router Slot -->
-	<div class="container mx-auto p-4">
+	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 		<slot />
 	</div>
 	<!-- ---- / ---- -->

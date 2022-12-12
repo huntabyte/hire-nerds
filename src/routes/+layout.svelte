@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../styles/theme-hbyte.css'
+	import '../styles/theme-hbyte-v2.css'
 	import '@skeletonlabs/skeleton/styles/all.css'
 	import '../app.postcss'
 	import { Toaster } from 'svelte-french-toast'

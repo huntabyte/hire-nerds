@@ -3,8 +3,8 @@
 :root {
 	/* =~= Theme Styles =~= */
 	--theme-border-base: 1px;
-	--theme-font-family-heading: 'IBM Plex Sans Condensed', system-ui, sans-serif;
-	--theme-font-family-base: 'IBM Plex Sans Condensed', system-ui, sans-serif;
+	--theme-font-family-heading: 'Inter', system-ui, sans-serif;
+	--theme-font-family-base: 'Inter', system-ui, sans-serif;
 	--theme-font-color-base: var(--color-surface-900);
 	--theme-font-color-dark: var(--color-surface-50);
 	--theme-rounded-base: 9999px;

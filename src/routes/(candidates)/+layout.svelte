@@ -2,28 +2,19 @@
 	import { storeDrawer } from '$lib/stores/ui'
 	import { AppBar, AppShell, Avatar, Drawer, menu } from '@skeletonlabs/skeleton'
 	import type { NavLink } from '$lib/types'
-
 	import { Navigation } from '$lib/components'
+	import type { PageData } from './$types'
+	export let data: PageData
+
 	const navItems: NavLink[] = [
 		{
 			title: 'Home',
 			href: '/'
 		},
-		{
-			title: 'Profile',
-			href: '/my/profile'
-		},
-		{
-			title: 'Applications',
-			href: '/my/applications'
-		},
+
 		{
 			title: 'Jobs',
 			href: '/jobs'
-		},
-		{
-			title: 'Employer View',
-			href: '/employers'
 		}
 	]
 
@@ -35,6 +26,14 @@
 		{
 			title: 'Resume',
 			href: '/my/resume'
+		},
+		{
+			title: 'Applications',
+			href: '/my/applications'
+		},
+		{
+			title: 'Employer View',
+			href: '/employers'
 		}
 	]
 
@@ -49,7 +48,7 @@
 		<AppBar>
 			<svelte:fragment slot="lead">
 				<div class="flex items-center">
-					<button class="lg:hidden btn btn-sm mr-4" on:click={drawerOpen}>
+					<button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen}>
 						<span>
 							<svg viewBox="0 0 100 80" class="fill-token w-4 h-4">
 								<rect width="100" height="20" />
@@ -59,43 +58,50 @@
 						</span>
 					</button>
 					<a href="/">
-						<strong class="text-xl uppercase">Hire Nerds</strong>
+						<span class="text-xl font-medium uppercase">Hire Nerds</span>
 					</a>
 				</div>
 			</svelte:fragment>
 
 			<svelte:fragment slot="trail">
-				{#each navItems as item}
-					<a class="btn btn-sm" href={item.href}>{item.title}</a>
-				{/each}
-				<span class="relative">
-					<button use:menu={{ menu: 'navigation' }}
-						><Avatar
-							initials="HJ"
-							border="border-2 border-surface-300-600-token hover:!border-primary-500 cursor-pointer"
-						/></button
-					>
-					<nav class="list-nav card p-4 w-48 shadow-xl" data-menu="navigation">
-						<ul>
-							{#each userMenu as item}
-								<li>
-									<a href={item.href}>{item.title}</a>
-								</li>
-							{/each}
+				{#if data.session}
+					{#each navItems as item}
+						<a class="btn btn-sm" href={item.href}>{item.title}</a>
+					{/each}
+				{:else}
+					<a href="/login" class="btn btn-sm btn-filled-primary">Login</a>
+					<a href="/login" class="btn btn-sm btn-filled-accent">Register</a>
+				{/if}
+				{#if data.session}
+					<span class="relative">
+						<button use:menu={{ menu: 'navigation' }}
+							><Avatar
+								initials="HJ"
+								border="border-2 border-surface-300-600-token hover:!border-primary-500 cursor-pointer"
+							/></button
+						>
+						<nav class="list-nav card p-4 w-48 shadow-xl" data-menu="navigation">
+							<ul>
+								{#each userMenu as item}
+									<li>
+										<a href={item.href}>{item.title}</a>
+									</li>
+								{/each}
 
-							<li>
-								<form action="/logout" method="POST">
-									<button type="submit" class="option w-full">Sign Out</button>
-								</form>
-							</li>
-						</ul>
-					</nav>
-				</span>
+								<li>
+									<form action="/logout" method="POST">
+										<button type="submit" class="option w-full">Sign Out</button>
+									</form>
+								</li>
+							</ul>
+						</nav>
+					</span>
+				{/if}
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
-	<div class="container mx-auto p-4">
+	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter" />
