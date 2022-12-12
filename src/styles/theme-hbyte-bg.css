@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+	/* =~= Theme Styles =~= */
+	--theme-border-base: 1px;
+	--theme-font-family-heading: 'Inter', system-ui, sans-serif;
+	--theme-font-family-base: 'Inter', system-ui, sans-serif;
+	--theme-font-color-base: var(--color-surface-900);
+	--theme-font-color-dark: var(--color-surface-50);
+	--theme-rounded-base: 6px;
+	--theme-rounded-container: 8px;
+	/* =~= Theme Colors | Tailwind =~= */
+	/* primary | #0FBA81 */
+	--color-primary-50: 235 248 255;
+	--color-primary-100: 209 238 252;
+	--color-primary-200: 167 216 240;
+	--color-primary-300: 124 193 228;
+	--color-primary-400: 85 170 212;
+	--color-primary-500: 57 148 193;
+	--color-primary-600: 45 131 174;
+	--color-primary-700: 29 111 152;
+	--color-primary-800: 22 96 134;
+	--color-primary-900: 11 79 113;
+	/* accent | #4F46E5 */
+	--color-accent-50: 227 249 229;
+	--color-accent-100: 193 234 197;
+	--color-accent-200: 163 217 165;
+	--color-accent-300: 123 196 127;
+	--color-accent-400: 87 174 91;
+	--color-accent-500: 63 145 66;
+	--color-accent-600: 47 129 50;
+	--color-accent-700: 32 114 39;
+	--color-accent-800: 14 88 20;
+	--color-accent-900: 5 64 10;
+	/* tertiary | #EAB309 */
+	--color-tertiary-50: 253 235 255;
+	--color-tertiary-100: 248 195 254;
+	--color-tertiary-200: 244 143 255;
+	--color-tertiary-300: 242 105 252;
+	--color-tertiary-400: 237 69 237;
+	--color-tertiary-500: 225 25 208;
+	--color-tertiary-600: 203 16 184;
+	--color-tertiary-700: 177 11 161;
+	--color-tertiary-800: 150 8 136;
+	--color-tertiary-900: 112 5 98;
+	/* warning | #D41976 */
+	--color-warning-50: 255 229 229;
+	--color-warning-100: 255 189 189;
+	--color-warning-200: 255 153 153;
+	--color-warning-300: 248 104 104;
+	--color-warning-400: 239 78 78;
+	--color-warning-500: 225 45 57;
+	--color-warning-600: 208 17 36;
+	--color-warning-700: 170 9 30;
+	--color-warning-800: 139 4 27;
+	--color-warning-900: 99 3 22;
+	/* surface | #1C2237 */
+	--color-surface-50: 245 247 250;
+	--color-surface-100: 229 232 235;
+	--color-surface-200: 202 209 216;
+	--color-surface-300: 154 165 177;
+	--color-surface-400: 123 135 147;
+	--color-surface-500: 96 109 123;
+	--color-surface-600: 81 95 108;
+	--color-surface-700: 63 77 90;
+	--color-surface-800: 51 64 77;
+	--color-surface-900: 31 41 51;
+}
+
+/* Headings */
+[data-theme='skeleton'] h1,
+[data-theme='skeleton'] h2,
+[data-theme='skeleton'] h3,
+[data-theme='skeleton'] h4,
+[data-theme='skeleton'] h5,
+[data-theme='skeleton'] h6 {
+	font-weight: bold;
+}
+
+/* Applied to body with `<body data-theme="skeleton">` */
+/* Created with: https://csshero.org/mesher/ */
+[data-theme='skeleton'] {
+	/* prettier-ignore */
+	background-image:
+		radial-gradient(at 73% 84%, hsla(213,80%,69%,0.18) 0px, transparent 50%),
+		radial-gradient(at 16% 79%, hsla(268,79%,73%,0.18) 0px, transparent 50%),
+		radial-gradient(at 88% 64%, hsla(290,68%,62%,0.18) 0px, transparent 50%),
+		radial-gradient(at 67% 14%, hsla(167,87%,76%,0.18) 0px, transparent 50%),
+		radial-gradient(at 70% 75%, hsla(170,71%,68%,0.18) 0px, transparent 50%),
+		radial-gradient(at 98% 62%, hsla(244,77%,60%,0.18) 0px, transparent 50%),
+		radial-gradient(at 50% 19%, hsla(322,97%,63%,0.18) 0px, transparent 50%);
+}
+.dark [data-theme='skeleton'] {
+	/* prettier-ignore */
+	background-image:
+		radial-gradient(at 36% 0%, hsla(240,73%,56%,0.2) 0px, transparent 50%),
+		radial-gradient(at 71% 4%, hsla(330,78%,46%,0.18) 0px, transparent 50%);
+}

@@ -69,8 +69,8 @@
 						<a class="btn btn-sm" href={item.href}>{item.title}</a>
 					{/each}
 				{:else}
-					<a href="/login" class="btn btn-sm btn-filled-primary">Login</a>
-					<a href="/login" class="btn btn-sm btn-filled-accent">Register</a>
+					<a href="/login" class="btn btn-filled-primary">Login</a>
+					<a href="/register" class="btn btn-ghost-primary">Register</a>
 				{/if}
 				{#if data.session}
 					<span class="relative">
