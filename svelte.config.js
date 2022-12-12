@@ -8,11 +8,15 @@ const config = {
 	preprocess: [
 		preprocess({
 			postcss: true,
+			typescript: true,
 		}),
 	],
 
 	kit: {
 		adapter: adapter(),
+		files: {
+			lib: 'src/lib',
+		},
 	},
 }
 
