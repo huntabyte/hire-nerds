@@ -203,8 +203,15 @@ export const customQuestionsSchema = z.array(
 		.optional(),
 )
 
-export const resumeSummarySchema = z.object({
+export const updateResumeDetailsSchema = z.object({
 	summary: z.string({ required_error: 'Summary is required' }).max(1000, {
 		message: 'Summary must be less than 1000 characters',
 	}),
+	firstName: z
+		.string()
+		.max(64, { message: 'First name must be less than 64 characters' }),
+	lastName: z
+		.string()
+		.max(64, { message: 'Last name must be less than 64 characters' }),
+	location: z.string(),
 })

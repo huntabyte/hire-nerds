@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/prisma'
-import { error, invalid, redirect } from '@sveltejs/kit'
+import { error, fail, redirect } from '@sveltejs/kit'
 import { questionType } from '$lib/constants'
 import type { Actions, PageServerLoad } from './$types'
 import type { Question } from '$lib/types'
@@ -75,7 +75,7 @@ export const actions: Actions = {
 		}
 
 		if (hasErrors) {
-			return invalid(400, {
+			return fail(400, {
 				answers,
 				errors,
 			})

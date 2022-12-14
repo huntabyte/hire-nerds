@@ -13,13 +13,17 @@
 				case 'success':
 					showEducationForm = false
 					toast.success('Experience added successfully!')
+					await update()
 					break
-				case 'invalid':
+				case 'failure':
 					toast.error('Invalid form data!')
+					await update()
+				case 'error':
+					toast.error('Failed to add experience. Please try again later.')
+					break
 				default:
 					break
 			}
-			await update()
 		}
 	}
 </script>

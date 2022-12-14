@@ -1,7 +1,7 @@
 import { createSkillSchema } from '$lib/schemas'
 import { prisma } from '$lib/server/prisma'
 import { validateData } from '$lib/utils'
-import { error, invalid, redirect } from '@sveltejs/kit'
+import { error, fail, redirect } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
@@ -16,7 +16,7 @@ export const actions: Actions = {
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors: errors.fieldErrors,
 			})

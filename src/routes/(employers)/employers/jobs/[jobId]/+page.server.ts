@@ -1,7 +1,7 @@
 import { postJobSchema } from '$lib/schemas'
 import { prisma } from '$lib/server/prisma'
 import { validateData } from '$lib/utils'
-import { error, invalid } from '@sveltejs/kit'
+import { error, fail } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
@@ -10,7 +10,7 @@ export const actions: Actions = {
 		const { formData, errors } = await validateData(body, postJobSchema, true)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: body,
 				errors: errors.fieldErrors,
 			})

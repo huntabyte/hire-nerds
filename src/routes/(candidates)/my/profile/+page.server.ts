@@ -1,7 +1,7 @@
 import { updateProfileSchema } from '$lib/schemas'
 import { prisma } from '$lib/server/prisma'
 import { validateData } from '$lib/utils'
-import { error, invalid } from '@sveltejs/kit'
+import { error, fail } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ locals }) => {
@@ -36,7 +36,7 @@ export const actions: Actions = {
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors: errors.fieldErrors,
 			})

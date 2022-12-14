@@ -63,7 +63,7 @@
 				case 'success':
 					toast.success('Job published successfully!')
 					break
-				case 'invalid':
+				case 'failure':
 					break
 				default:
 					break

@@ -2,11 +2,11 @@ import {
 	createEducationSchema,
 	createExperienceSchema,
 	createSkillSchema,
-	resumeSummarySchema,
+	updateResumeDetailsSchema,
 } from '$lib/schemas'
 import { prisma } from '$lib/server/prisma'
 import { validateData } from '$lib/utils'
-import { error, invalid, redirect } from '@sveltejs/kit'
+import { error, fail, redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = ({ locals }) => {
@@ -49,7 +49,7 @@ export const actions: Actions = {
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors: errors.fieldErrors,
 			})
@@ -93,7 +93,7 @@ export const actions: Actions = {
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors: errors.fieldErrors,
 			})
@@ -126,18 +126,18 @@ export const actions: Actions = {
 		}
 	},
 
-	updateSummary: async ({ request, locals }) => {
+	updateResumeDetails: async ({ request, locals }) => {
 		if (!locals.session?.user) {
 			throw error(401, 'Unauthorized')
 		}
 
 		const { formData, errors } = await validateData(
 			await request.formData(),
-			resumeSummarySchema,
+			updateResumeDetailsSchema,
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors: errors.fieldErrors,
 			})
@@ -159,7 +159,7 @@ export const actions: Actions = {
 					id: resume.id,
 				},
 				data: {
-					summary: formData.summary,
+					...formData,
 				},
 			})
 		} catch (err) {
@@ -182,7 +182,7 @@ export const actions: Actions = {
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors: errors.fieldErrors,
 			})

@@ -1,7 +1,7 @@
 import { validateData } from '$lib/utils'
 import type { Actions, PageServerLoad } from './$types'
 import { createOrganizationSchema } from '$lib/schemas'
-import { error, invalid, redirect } from '@sveltejs/kit'
+import { error, fail, redirect } from '@sveltejs/kit'
 import { prisma } from '$lib/server/prisma'
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -31,7 +31,7 @@ export const actions: Actions = {
 		)
 
 		if (errors) {
-			return invalid(400, {
+			return fail(400, {
 				data: formData,
 				errors,
 			})
