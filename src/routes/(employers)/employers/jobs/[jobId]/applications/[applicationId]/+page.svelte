@@ -7,5 +7,7 @@
 
 <div class="flex gap-6">
 	<Resume resume={data.application.resume} />
-	<ApplicationAnswers job={data.job} application={data.application} />
+	{#if data.application.questionAnswers.length > 0}
+		<ApplicationAnswers job={data.job} application={data.application} />
+	{/if}
 </div>

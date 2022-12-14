@@ -6,6 +6,7 @@
 	import { invalidateAll } from '$app/navigation'
 	import { supabase } from '$lib/supabase'
 	import { onMount } from 'svelte'
+	import { Modal } from '@skeletonlabs/skeleton'
 
 	onMount(() => {
 		const {
@@ -19,6 +20,8 @@
 		}
 	})
 </script>
+
+<Modal />
 
 <Toaster />
 <slot />

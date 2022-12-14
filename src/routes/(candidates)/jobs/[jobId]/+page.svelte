@@ -12,11 +12,14 @@
 			switch (result.type) {
 				case 'success':
 					toast.success('Successfully applied!')
+					await update()
+					break
+				case 'error':
+					toast.error('Something went wrong. Please try again later')
 					break
 				default:
 					break
 			}
-			await update()
 		}
 	}
 </script>
@@ -28,7 +31,13 @@
 
 			{#if session}
 				{#if !hasApplied}
-					<a href="/jobs/{job.id}/apply" class="btn btn-filled-primary">Apply</a>
+					{#if job.customQuestions.length > 0}
+						<a href="/jobs/{job.id}/apply" class="btn btn-filled-primary">Apply</a>
+					{:else}
+						<form action="?/createApplication" method="POST" use:enhance={submitApplication}>
+							<button type="submit" class="btn btn-filled-accent">Apply</button>
+						</form>
+					{/if}
 				{:else}
 					<button disabled class="btn btn-ghost-surface">Applied✅</button>
 				{/if}

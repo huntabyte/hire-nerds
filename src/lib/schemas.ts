@@ -166,28 +166,33 @@ export const createSkillSchema = z.object({
 })
 
 export const answerOptionSchema = z.object({
-	id: z.string({ required_error: 'Option ID is required' }),
-	value: z.string({ required_error: 'Option value is required' }),
+	id: z
+		.string({ required_error: 'Option ID is required' })
+		.min(1, { message: 'Option ID is required' }),
+	value: z
+		.string({ required_error: 'Option value is required' })
+		.min(1, { message: 'Option value is required' }),
 })
 
 export const multipleChoiceQuestionSchema = z.object({
-	title: z.string({ required_error: 'Question title is required' }),
-	options: z.array(answerOptionSchema),
+	id: z.string({ required_error: 'Question ID is required' }),
+	question: z.object({
+		title: z.string({ required_error: 'Question title is required' }),
+		options: z.array(answerOptionSchema),
+	}),
+	type: z.enum([questionType.MULTIPLE_CHOICE]),
 })
 
-export const customResponseQuestionSchema = multipleChoiceQuestionSchema.omit({
-	options: true,
+export const customResponseQuestionSchema = z.object({
+	id: z.string({ required_error: 'Question ID is required' }),
+	question: z.object({
+		title: z.string({ required_error: 'Question title is required' }),
+	}),
+	type: z.enum([questionType.SHORT_ANSWER]),
 })
 
 export const createApplicationQuestionsSchema = z.array(
-	z.object({
-		id: z.string({ required_error: 'Question ID is required' }),
-		question: z.union([
-			multipleChoiceQuestionSchema,
-			customResponseQuestionSchema,
-		]),
-		type: z.nativeEnum(questionType),
-	}),
+	z.union([multipleChoiceQuestionSchema, customResponseQuestionSchema]),
 )
 
 export const customQuestionsSchema = z.array(

@@ -26,10 +26,6 @@ export const actions: Actions = {
 			throw redirect(303, '/login')
 		}
 
-		if (!locals.session?.user) {
-			throw redirect(303, '/login')
-		}
-
 		const resume = await prisma.resume.findFirst({
 			where: {
 				userId: locals.session.user.id,

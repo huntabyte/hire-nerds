@@ -96,11 +96,11 @@
 				<Divider borderWidth="border-t" borderStye="solid" borderColor="border-primary-500" />
 			</span>
 
-			{#each resume.skills as skill}
-				<div class="flex">
-					<span class="badge bg-accent-500">{skill.name}</span>
-				</div>
-			{/each}
+			<div class="flex gap-2">
+				{#each resume.skills as skill}
+					<span class="badge bg-surface-900">{skill.name}</span>
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>

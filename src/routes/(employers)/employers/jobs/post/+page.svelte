@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Input, RadioGroup, Textarea, ApplicationFormBuilder } from '$lib/components'
+	import { Input, RadioGroup, Textarea } from '$lib/components'
 	import type { IInput } from '$lib/types'
-	import type { PageData, ActionData } from './$types'
+	import { modalStore } from '@skeletonlabs/skeleton'
 
 	let jobTypeInputs: IInput[] = [
 		{

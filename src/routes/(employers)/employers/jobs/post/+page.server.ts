@@ -1,7 +1,7 @@
 import { postJobSchema } from '$lib/schemas'
 import { prisma } from '$lib/server/prisma'
 import { validateData } from '$lib/utils'
-import { error, fail } from '@sveltejs/kit'
+import { error, fail, redirect } from '@sveltejs/kit'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
@@ -27,13 +27,14 @@ export const actions: Actions = {
 
 		if (locals.session?.user) {
 			try {
-				await prisma.job.create({
+				const job = await prisma.job.create({
 					data: {
 						organizationId: userOrg.organizationId,
 						userId: locals.session.user.id,
 						...formData,
 					},
 				})
+				throw redirect(303, `/employers/jobs/${job.id}`)
 			} catch (err) {
 				console.log('Error: ', err)
 				throw error(500, 'Something went wrong creating the job.')

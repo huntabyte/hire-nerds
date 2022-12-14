@@ -34,7 +34,7 @@ const createOrganization = async (profile) => {
 		},
 	})
 	if (organization) {
-		const organizationUser = await prisma.organizationUser.create({
+		await prisma.organizationUser.create({
 			data: {
 				organizationId: organization.id,
 				userId: profile.id,
@@ -77,6 +77,7 @@ const createManyJobs = async (profile, organization, numJobs) => {
 			jobLocType: faker.helpers.arrayElement(['REMOTE', 'HYBRID', 'OFFICE']),
 			organizationId: organization.id,
 			userId: profile.id,
+			status: 'OPEN',
 		})
 	}
 	const jobs = await prisma.job.createMany({
@@ -90,12 +91,13 @@ const createResume = async (profile) => {
 		data: {
 			firstName: profile.firstName,
 			lastName: profile.lastName,
+			summary: faker.lorem.paragraph(),
 			location: faker.address.cityName(),
 			userId: profile.id,
 		},
 	})
 	const city = faker.address.cityName()
-
+	// create resume education
 	const resumeEducation = await prisma.resumeEducation.create({
 		data: {
 			educationLevel: faker.helpers.arrayElement([
@@ -113,7 +115,9 @@ const createResume = async (profile) => {
 			resumeId: resume.id,
 		},
 	})
-	const resumeExperience = await prisma.resumeExperience.create({
+
+	// create resume experience
+	await prisma.resumeExperience.create({
 		data: {
 			jobTitle: faker.name.jobTitle(),
 			company: faker.company.name(),
@@ -124,8 +128,9 @@ const createResume = async (profile) => {
 			resumeId: resume.id,
 		},
 	})
+	// create resume skills
 
-	const resumeSkills = await prisma.resumeSkills.create({
+	await prisma.resumeSkills.create({
 		data: {
 			name: faker.company.bsNoun(),
 			resumeId: resume.id,
@@ -147,29 +152,15 @@ const createJobApplication = async (profile, resume, job) => {
 }
 
 export const orgUserIds = [
-	'84d396af-e883-450d-a164-7c1399d6ae49',
-	'447a2c0c-2231-4f83-aa08-2c427847d04b',
-	'06a92e5a-3d85-4098-82fc-97aa931568ce',
-	'905ace4b-0cc3-4309-984a-474530707016',
-	'9f02566f-3020-492f-9be5-b4a487b61ad4',
+	'2cfe9094-26e0-487b-b7b0-cc8f354d4d2b',
+	'3564b2e7-69d3-4eab-ac03-9b17af1acd76',
+	'4385b459-a83a-4ce3-a830-e55ef58efa00',
 ]
 
 export const candidateUserIds = [
-	'ecae3fd5-550a-47aa-81f8-8edaa779f295',
-	'7144973a-2bff-40fe-9f68-fba9cba8ba56',
-	'5cd0e9f0-4210-4eba-9cf3-876684304939',
-	'3156392a-8220-4e8b-a5cb-5d1332e85805',
-	'bb00045f-0358-4ff2-95ad-b0ec5e283365',
-	'683cd2ec-d89f-4b8e-93b4-c21d775b332b',
-	'11475c79-5726-4fc9-a014-bdbae553468d',
-	'0720adf1-2a3f-4f87-9244-53b3c76a3d95',
-	'84261d9e-4493-4d22-a4a9-00e30be09bba',
-	'c6a190d8-9c65-4940-b77e-3971bd95a4dc',
-	'e318b870-3c97-43ba-8ea0-f5329af37269',
-	'660d2b95-3790-4e07-b5cc-3dd8b5dcdc66',
-	'471742a6-5bf1-43fc-b9e3-2ad73e521919',
-	'163f884a-a113-4ec0-96e6-903cdcebdc03',
-	'66b571bc-fdb3-45b7-a154-9b37a614ba77',
+	'8dac227c-348a-43f2-9227-4fa45945797c',
+	'e3e5fab5-eac4-4bec-8107-28aed0ffa491',
+	'805938da-da53-400e-9aaf-03f4fb15aec4',
 ]
 
 async function main() {
@@ -177,7 +168,7 @@ async function main() {
 		const profile = await createUser(val)
 		const organization = await createOrganization(profile)
 
-		const jobs = await createManyJobs(profile, organization, 5)
+		await createManyJobs(profile, organization, 5)
 	}
 
 	const jobs = await prisma.job.findMany()
@@ -189,10 +180,10 @@ async function main() {
 		let jobsToApply = []
 
 		for (let i = 0; i < 5; i++) {
-			let num = faker.datatype.number({ min: 0, max: 24 })
+			let num = faker.datatype.number({ min: 0, max: 14 })
 
 			while (jobsToApply.includes(num)) {
-				num = faker.datatype.number({ min: 0, max: 24 })
+				num = faker.datatype.number({ min: 0, max: 14 })
 			}
 			jobsToApply.push(num)
 		}
