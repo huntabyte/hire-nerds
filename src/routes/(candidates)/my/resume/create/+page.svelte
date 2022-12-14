@@ -7,7 +7,7 @@
 		<div class="card-heading">
 			<h1 class="text-3xl font-bold">Create Resume</h1>
 		</div>
-		<form action="?/createResume" method="POST" class="flex flex-col space-y-2 w-full card-body">
+		<form action="?/createResume" method="POST" class="flex flex-col space-y-2 w-full p-4">
 			<Input id="firstName" type="text" label="First Name" />
 			<Input id="lastName" type="text" label="Last Name" />
 			<Input id="location" type="text" label="City, State" />
