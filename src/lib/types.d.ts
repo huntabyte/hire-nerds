@@ -37,3 +37,17 @@ type AnswerOption = {
 	id: string
 	value: string
 }
+
+const jobApplicationWithResume = Prisma.validator<Prisma.JobApplicationArgs>()({
+	include: { resume: true },
+})
+
+export type JobApplicationWithResume = Prisma.JobApplicationGetPayload<
+	typeof jobApplicationWithResume
+>
+
+const jobsWithCount = Prisma.validator<Prisma.JobFindManyArgs>()({
+	include: { _count: { select: { applications: true } } },
+})
+
+export type JobsWithCount = Prisma.JobGetPayload<typeof jobsWithCount>

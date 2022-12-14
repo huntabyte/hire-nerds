@@ -12,7 +12,7 @@
 			<Input id="lastName" label="Last Name" type="text" value={data.profile?.lastName} />
 		</fieldset>
 		<div class="w-full pt-2">
-			<button type="submit" class="btn bg-primary-500 btn-base w-full">Update Profile</button>
+			<button type="submit" class="btn btn-filled-primary w-full">Update Profile</button>
 		</div>
 	</form>
 </div>

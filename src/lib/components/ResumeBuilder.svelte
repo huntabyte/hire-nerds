@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import type { Resume, ResumeEducation, ResumeExperience, ResumeSkills } from '@prisma/client'
 	import { Divider } from '@skeletonlabs/skeleton'
 	import { ExperienceForm, EducationForm, Input, Textarea } from '$lib/components'
@@ -13,6 +12,7 @@
 	export let resume: IResume
 	let showExperienceForm = false
 	let showEducationForm = false
+	let showSkillForm = false
 
 	const toggleExperienceForm = () => {
 		showExperienceForm = !showExperienceForm
@@ -104,12 +104,25 @@
 	</div>
 	<div class="flex flex-col w-full">
 		<div class="flex justify-between items-center">
-			<h4 class="font-bold">Skills</h4>
-			<button class="btn btn-sm btn-filled-primary">Add</button>
+			<h4 class="font-medium">Skills</h4>
+			<button class="btn btn-sm btn-filled-primary" on:click={() => (showSkillForm = true)}
+				>Add</button
+			>
 		</div>
 		<span class="py-3">
 			<Divider borderWidth="border-t" borderStye="solid" borderColor="border-primary-500" />
 		</span>
+		{#if showSkillForm}
+			<form action="?/createSkill" method="POST">
+				<Input type="text" label="Skill" id="skill" />
+				<button type="submit" class="btn btn-sm btn-filled-primary">Add</button>
+				<button
+					type="button"
+					class="btn btn-sm btn-ghost-warning"
+					on:click={() => (showSkillForm = false)}>Cancel</button
+				>
+			</form>
+		{/if}
 
 		{#each resume.skills as skill}
 			<div class="flex">

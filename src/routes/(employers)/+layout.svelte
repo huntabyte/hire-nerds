@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Navigation from '$lib/components/navigation/Navigation.svelte'
-	import { storeDrawer } from '$lib/stores/ui'
+	import { drawerStore } from '@skeletonlabs/skeleton'
+
 	import type { NavLink } from '$lib/types'
 	import { AppBar, AppShell, Avatar, Drawer, menu } from '@skeletonlabs/skeleton'
 
@@ -39,11 +40,11 @@
 	const combinedNav = [...sidebarNav, ...topNav]
 
 	function drawerOpen(): void {
-		storeDrawer.set(true)
+		drawerStore.open({ id: 'menu' })
 	}
 </script>
 
-<Drawer open={storeDrawer} position="left"><Navigation navItems={combinedNav} /></Drawer>
+<Drawer><Navigation navItems={combinedNav} /></Drawer>
 <AppShell slotSidebarLeft="bg-surface-500/5 w-0 lg:w-36">
 	<svelte:fragment slot="header">
 		<AppBar>

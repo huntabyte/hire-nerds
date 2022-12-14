@@ -19,14 +19,17 @@
         "@playwright/test": "1.25.0",
         "@prisma/client": "^4.7.0",
         "@skeletonlabs/skeleton": "^0.80.8",
+        "@supabase/auth-helpers-sveltekit": "^0.8.6",
+        "@supabase/supabase-js": "^2.2.0",
         "@sveltejs/adapter-auto": "next",
-        "@sveltejs/kit": "next",
+        "@sveltejs/kit": "^1.0.0-next.587",
         "@tailwindcss/forms": "^0.5.3",
         "@typescript-eslint/eslint-plugin": "^5.27.0",
         "@typescript-eslint/parser": "^5.27.0",
         "autoprefixer": "^10.4.7",
         "daisyui": "^2.42.1",
         "date-fns": "^2.29.3",
+        "dotenv": "^16.0.3",
         "eslint": "^8.16.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-svelte3": "^4.0.0",
@@ -44,15 +47,10 @@
         "tslib": "^2.3.1",
         "typescript": "^4.7.4",
         "unplugin-icons": "^0.14.15",
-        "vite": "^3.2.4",
+        "vite": "^4.0.1",
         "vitest": "^0.23.4",
         "zod": "^3.19.1",
         "zod-form-data": "^1.2.4"
     },
-    "type": "module",
-    "dependencies": {
-        "@supabase/auth-helpers-sveltekit": "^0.8.6",
-        "@supabase/supabase-js": "^2.1.1",
-        "dotenv": "^16.0.3"
-    }
+    "type": "module"
 }

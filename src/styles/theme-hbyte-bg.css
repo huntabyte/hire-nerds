@@ -7,6 +7,10 @@
 	--theme-font-family-base: 'Inter', system-ui, sans-serif;
 	--theme-font-color-base: var(--color-surface-900);
 	--theme-font-color-dark: var(--color-surface-50);
+	--on-primary: #fff;
+	--on-accent: #fff;
+	--on-tertiary: #1f2933;
+	--on-warning: #fff;
 	--theme-rounded-base: 6px;
 	--theme-rounded-container: 8px;
 	/* =~= Theme Colors | Tailwind =~= */

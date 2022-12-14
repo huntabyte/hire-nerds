@@ -11,7 +11,7 @@
 	<div class="card-header">
 		<h3>Your Applications</h3>
 	</div>
-	<div class="card-body">
+	<div class="p-4">
 		<div class="table-container">
 			<table class="table table-hover">
 				<thead>
