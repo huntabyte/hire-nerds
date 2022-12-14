@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import type { Resume, ResumeEducation, ResumeExperience, ResumeSkills } from '@prisma/client'
 	import { Divider } from '@skeletonlabs/skeleton'
-	import { ExperienceForm, EducationForm } from '$lib/components'
+	import { ExperienceForm, EducationForm, Input, Textarea } from '$lib/components'
 
 	interface IResume extends Resume {
 		experience: ResumeExperience[]
@@ -18,22 +19,25 @@
 	}
 </script>
 
-<div class="card card-body max-w-4xl mx-auto flex flex-col gap-8">
-	<div class="flex justify-between w-full">
-		<div>
-			<h3>Hunter Johnston</h3>
-			<p>Tampa, FL</p>
-			<p>hunter@example.com</p>
+<div class="card card-glass p-4 max-w-4xl mx-auto flex flex-col gap-8">
+	<form action="?/updateResumeDetails" method="POST" class="flex flex-col">
+		<div class="flex justify-between">
+			<div class="flex flex-col">
+				<div class="flex gap-2">
+					<Input type="text" value={resume.firstName} label="First Name" id="firstName" />
+					<Input type="text" value={resume.lastName} label="Last Name" id="lastName" />
+				</div>
+				<Input type="text" value={resume.location} label="Location" id="location" />
+			</div>
+			<div>
+				<button type="button" class="btn btn-sm btn-filled-primary">Edit</button>
+			</div>
 		</div>
-		<div>
-			<button class="btn btn-sm btn-filled-primary">Edit</button>
-		</div>
-	</div>
-	<p class="-mt-5">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nesciunt quos illo facilis
-		quam aspernatur aliquid sunt facere commodi excepturi voluptatum, adipisci sit vel, provident
-		mollitia ipsa ipsam vero fuga.
-	</p>
+		<Textarea class="w-full h-32 resize-none" id="summary" label="Summary" value={resume.summary} />
+		<span class="pt-2 self-end">
+			<button type="submit" class="btn btn-sm btn-ghost-primary">Update</button>
+		</span>
+	</form>
 	<div class="flex flex-col w-full">
 		<div class="flex justify-between items-center">
 			<h4 class="font-medium">Experience</h4>
@@ -85,7 +89,7 @@
 				<div class="flex justify-between">
 					<h4 class="font-semibold">{education.educationLevel} - {education.field}</h4>
 					<p>
-						{education.enrolledFrom.getUTCFullYear()} - {education?.enrolledTo
+						{education.enrolledFrom?.getUTCFullYear()} - {education?.enrolledTo
 							? education.enrolledTo.getUTCFullYear()
 							: 'Present'}
 					</p>

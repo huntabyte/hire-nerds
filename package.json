@@ -18,7 +18,7 @@
         "@iconify/json": "^2.1.151",
         "@playwright/test": "1.25.0",
         "@prisma/client": "^4.7.0",
-        "@skeletonlabs/skeleton": "^0.76.3",
+        "@skeletonlabs/skeleton": "^0.80.8",
         "@sveltejs/adapter-auto": "next",
         "@sveltejs/kit": "next",
         "@tailwindcss/forms": "^0.5.3",

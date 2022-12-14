@@ -102,21 +102,22 @@
 			<RadioGroup label="Compensation Type" inputList={compTypeInputs} />
 			<RadioGroup label="Location Type" inputList={jobLocTypeInputs} />
 		</fieldset>
-
 		<div>
 			<button type="submit" class="btn bg-primary-500 btn-base text-white">
 				Update Job Posting
 			</button>
 		</div>
 	</form>
-	<div class="card h-40">
+	<div class="card h-min">
 		<div class="card-header">
 			<p>Details</p>
 		</div>
-		<div class="card-body flex flex-col gap-2">
-			<a href="/employers/jobs/{job.id}/questions" class="btn btn-filled-tertiary"
-				>Manage Questions</a
-			>
+		<div class="p-4 flex flex-col gap-2">
+			{#if job.status === 'DRAFT'}
+				<a href="/employers/jobs/{job.id}/questions" class="btn bg-yellow-500 text-surface-900"
+					>Manage Questions</a
+				>
+			{/if}
 			<form action="?/publishJob" method="POST" class="w-full" use:enhance={submitPublishJob}>
 				<button type="submit" class="btn btn-filled-primary w-full">Publish</button>
 			</form>

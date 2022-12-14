@@ -8,7 +8,7 @@
 </script>
 
 <div class="p-8 flex flex-col gap-4">
-	<h1>Jobs</h1>
+	<h2>Jobs</h2>
 
 	{#each jobs as job}
 		<Job {job} />

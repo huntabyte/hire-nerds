@@ -5,7 +5,7 @@
 	export let data: PageData
 </script>
 
-<div class="flex">
+<div class="flex gap-6">
 	<Resume resume={data.application.resume} />
 	<ApplicationAnswers job={data.job} application={data.application} />
 </div>

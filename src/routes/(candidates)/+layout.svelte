@@ -101,7 +101,7 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
-	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-6">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter" />

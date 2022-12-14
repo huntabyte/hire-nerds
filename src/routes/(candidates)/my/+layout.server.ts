@@ -1,4 +1,5 @@
-import { redirect } from '@sveltejs/kit'
+import { prisma } from '$lib/server/prisma'
+import { error, redirect } from '@sveltejs/kit'
 import type { LayoutServerLoad } from './$types'
 
 export const load: LayoutServerLoad = async ({ locals }) => {

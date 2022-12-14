@@ -10,7 +10,7 @@
 </script>
 
 <div class="overflow-hidden shadow sm:rounded-md">
-	<a href="/jobs/{job.id}" class="block bg-surface-800">
+	<a href="/jobs/{job.id}" class="block bg-surface-800 unstyled">
 		<div class="px-4 py-4 sm:px-6">
 			<div class="flex items-center justify-between">
 				<p class="truncate text-sm font-medium">

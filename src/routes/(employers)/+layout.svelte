@@ -99,7 +99,7 @@
 	</svelte:fragment>
 	<svelte:fragment slot="pageHeader" />
 	<!-- Router Slot -->
-	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+	<div class="mx-auto sm:px-4 lg:px-4 lg:py-2">
 		<slot />
 	</div>
 	<!-- ---- / ---- -->

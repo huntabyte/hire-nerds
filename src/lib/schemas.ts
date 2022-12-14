@@ -202,3 +202,9 @@ export const customQuestionsSchema = z.array(
 		})
 		.optional(),
 )
+
+export const resumeSummarySchema = z.object({
+	summary: z.string({ required_error: 'Summary is required' }).max(1000, {
+		message: 'Summary must be less than 1000 characters',
+	}),
+})

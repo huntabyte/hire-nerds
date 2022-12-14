@@ -18,7 +18,7 @@
 		<div class="card-header">
 			<h2 class="card-title">Apply for {job.title}</h2>
 		</div>
-		<form action="?/createApplication" method="POST" class="card-body flex flex-col gap-6">
+		<form action="?/createApplication" method="POST" class="p-4 flex flex-col gap-6">
 			{#each jobCustomQs as customQuestion}
 				{#if customQuestion}
 					{#if customQuestion.type === questionType.MULTIPLE_CHOICE}

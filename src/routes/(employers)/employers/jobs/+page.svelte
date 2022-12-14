@@ -7,7 +7,10 @@
 	$: ({ jobs } = data)
 </script>
 
-<div class="p-4">
-	<a href="/employers/jobs/post" class="btn btn-filled-primary">New</a>
+<div>
+	<div class="flex justify-between items-center py-4">
+		<h2>Job Postings</h2>
+		<a href="/employers/jobs/post" class="btn btn-filled-primary">New</a>
+	</div>
 	<JobPostingDataTable sourceData={jobs} />
 </div>

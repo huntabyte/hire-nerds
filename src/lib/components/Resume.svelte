@@ -11,7 +11,7 @@
 	export let resume: IResume
 </script>
 
-<div class="card card-body max-w-4xl mx-auto flex flex-col">
+<div class="card p-4 max-w-4xl flex flex-col">
 	<div class="card-heading px-4">
 		<h2 class="text-2xl font-medium">Resume</h2>
 		<Divider
@@ -21,7 +21,7 @@
 			borderColor="border-surface-50"
 		/>
 	</div>
-	<div class="card-body flex flex-col gap-8">
+	<div class="p-4 flex flex-col gap-8">
 		<div class="flex justify-between w-full">
 			<div>
 				<h3>{resume.firstName} {resume.lastName}</h3>

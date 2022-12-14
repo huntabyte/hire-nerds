@@ -43,11 +43,11 @@
 	dataTableModel.subscribe((v) => dataTableHandler(v))
 </script>
 
-<section class="card !bg-accent-500/5">
+<section class="card !bg-surface-800/50">
 	<div class="card-header">
 		<input bind:value={$dataTableModel.search} type="search" placeholder="Search Table..." />
 	</div>
-	<div class="card-body">
+	<div class="p-4">
 		<div class="table-container">
 			<table class="table table-hover" role="grid" use:tableInteraction use:tableA11y>
 				<thead
@@ -83,7 +83,7 @@
 							<td><input type="checkbox" bind:checked={row.dataTableChecked} /></td>
 							<td class="md:!whitespace-normal capitalize">{row.title}</td>
 							<td class="md:!whitespace-normal capitalize">{row.location}</td>
-							<td class="md:!whitespace-normal capitalize">{jobType[`${row.type}`]}</td>
+							<td class="md:!whitespace-normal capitalize">{jobType[`${row.jobType}`]}</td>
 							<td class="md:!whitespace-normal capitalize"
 								>{nf.formatRange(row.payScaleBegin, row.payScaleEnd)}
 							</td>
@@ -97,9 +97,9 @@
 							<td class="md:!whitespace-normal">{formatDistanceToNowStrict(row.createdAt)} ago</td>
 							<td class="md:!whitespace-normal capitalize">
 								{#if row.status === 'DRAFT'}
-									<span class="badge bg-tertiary-500">{row.status}</span>
+									<span class="badge bg-yellow-500 text-surface-900">{row.status}</span>
 								{:else if row.status === 'OPEN'}
-									<span class="badge bg-primary-500">{row.status}</span>
+									<span class="badge bg-accent-500">{row.status}</span>
 								{:else if row.status === 'CLOSED'}
 									<span class="badge bg-warning-500">{row.status}</span>
 								{:else if row.status === 'PAUSED'}

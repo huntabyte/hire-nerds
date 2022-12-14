@@ -18,7 +18,7 @@
 
 <div class="card p-4">
 	<div class="card-heading px-4">
-		<h2><span class="font-medium"> Questionairre Answers </span></h2>
+		<h2><span class="font-medium"> Application Answers </span></h2>
 		<Divider
 			borderStyle="solid"
 			borderWidth="border-t"
@@ -26,7 +26,7 @@
 			borderColor="border-surace-50"
 		/>
 	</div>
-	<div class="card-body flex flex-col gap-6">
+	<div class="p-4 flex flex-col gap-6">
 		{#each jobCustomQs as customQuestion}
 			{#if customQuestion}
 				{#if customQuestion.type === questionType.MULTIPLE_CHOICE}

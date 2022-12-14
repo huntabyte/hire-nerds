@@ -15,7 +15,7 @@
 				<Input id="password" type="password" label="Password" />
 				<Input id="passwordConfirm" type="password" label="Confirm Password" />
 				<div class="w-full pt-3">
-					<button type="submit" class="btn btn-filled-primary w-full"> Login </button>
+					<button type="submit" class="btn btn-filled-primary w-full"> Register </button>
 					<p class="pt-4 text-center">
 						<span class="text-primary-50/80">
 							Or <a href="/login">Login</a> if you already have an account.

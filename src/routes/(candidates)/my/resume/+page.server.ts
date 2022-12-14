@@ -1,4 +1,8 @@
-import { createEducationSchema, createExperienceSchema } from '$lib/schemas'
+import {
+	createEducationSchema,
+	createExperienceSchema,
+	resumeSummarySchema,
+} from '$lib/schemas'
 import { prisma } from '$lib/server/prisma'
 import { validateData } from '$lib/utils'
 import { error, invalid, redirect } from '@sveltejs/kit'
@@ -57,7 +61,6 @@ export const actions: Actions = {
 		})
 
 		if (!resume) {
-			console.log('No resume found.')
 			throw redirect(303, '/my/resume/create')
 		}
 
@@ -102,7 +105,6 @@ export const actions: Actions = {
 		})
 
 		if (!resume) {
-			console.log('No resume found.')
 			throw redirect(303, '/my/resume/create')
 		}
 
@@ -111,6 +113,52 @@ export const actions: Actions = {
 				data: {
 					...formData,
 					resumeId: resume.id,
+				},
+			})
+		} catch (err) {
+			console.log('Error: ', err)
+
+			throw error(500, 'Something went wrong adding education.')
+		}
+		return {
+			success: true,
+		}
+	},
+
+	updateSummary: async ({ request, locals }) => {
+		if (!locals.session?.user) {
+			throw error(401, 'Unauthorized')
+		}
+
+		const { formData, errors } = await validateData(
+			await request.formData(),
+			resumeSummarySchema,
+		)
+
+		if (errors) {
+			return invalid(400, {
+				data: formData,
+				errors: errors.fieldErrors,
+			})
+		}
+
+		const resume = await prisma.resume.findUnique({
+			where: {
+				userId: locals.session.user.id,
+			},
+		})
+
+		if (!resume) {
+			throw redirect(303, '/my/resume/create')
+		}
+
+		try {
+			await prisma.resume.update({
+				where: {
+					id: resume.id,
+				},
+				data: {
+					summary: formData.summary,
 				},
 			})
 		} catch (err) {
