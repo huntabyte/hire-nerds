@@ -20,6 +20,7 @@ import QuestionMultipleChoice from './employers/QuestionMultipleChoice.svelte'
 import QuestionCustomResponse from './employers/QuestionCustomResponse.svelte'
 import Resume from './Resume.svelte'
 import ApplicationAnswers from './ApplicationAnswers.svelte'
+import Header from './Header.svelte'
 
 export {
 	ApplicationAnswers,
@@ -30,6 +31,7 @@ export {
 	EmployerJob,
 	EmployerJobTable,
 	ExperienceForm,
+	Header,
 	Input,
 	Job,
 	JobPostingDataTable,

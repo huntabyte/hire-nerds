@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import { storeDrawer } from '$lib/stores/ui'
 	import { AppBar, AppShell, Avatar, Drawer, menu } from '@skeletonlabs/skeleton'
 	import type { NavLink } from '$lib/types'
-	import { Navigation, Job } from '$lib/components'
+	import { Navigation, Job, Header } from '$lib/components'
 	import type { PageData } from './$types'
 	export let data: PageData
 
@@ -65,7 +64,7 @@
 			</svelte:fragment>
 
 			<svelte:fragment slot="trail">
-				{#if $page.data.session}
+				{#if data.session}
 					{#each navItems as item}
 						<a class="btn btn-sm" href={item.href}>{item.title}</a>
 					{/each}
@@ -73,7 +72,7 @@
 					<a href="/login" class="btn btn-filled-primary">Login</a>
 					<a href="/register" class="btn btn-ghost-primary">Register</a>
 				{/if}
-				{#if $page.data.session}
+				{#if data.session}
 					<span class="relative">
 						<button use:menu={{ menu: 'navigation' }}
 							><Avatar
@@ -101,10 +100,18 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-
-	<svelte:fragment slot="pageHeader" />
-	<div class="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-6">
-		<slot />
+	<Header />
+	<div class="flex justify-center mx-auto w-full max-w-7xl">
+		<div class="flex flex-col p-6 gap-6">
+			{#each data.jobs as job}
+				<Job {job} />
+			{/each}
+		</div>
+		<div class="max-w-7xl lg:py-6 flex-1 min-h-full">
+			<div class="card card-glass w-full p-4">
+				<slot />
+			</div>
+		</div>
 	</div>
 	<svelte:fragment slot="pageFooter" />
 	<svelte:fragment slot="footer" />
